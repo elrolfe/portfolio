@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Web Development Portfolio for Eric Rolfe",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elrolfe/portfolio.git"
+  },
+  "author": "Eric Rolfe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elrolfe/portfolio/issues"
+  },
+  "homepage": "https://github.com/elrolfe/portfolio#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "node-sass-middleware": "^0.9.8",
+    "pug": "^2.0.0-beta5"
+  }
+}
