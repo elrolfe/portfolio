@@ -1,0 +1,159 @@
+.simon-base {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  margin: 50px auto;
+  background-color: #333;
+  border-radius: 50%; }
+  .simon-base .button {
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    position: absolute;
+    border-top: 220px solid #fff;
+    border-left: 220px solid transparent;
+    border-bottom: 220px solid transparent;
+    border-right: 220px solid transparent;
+    border-radius: 220px;
+    -webkit-clip-path: polygon(50% 50%, 100% 0%, 0% 0%);
+    clip-path: polygon(50% 50%, 100% 0%, 0% 0%); }
+    .simon-base .button#green {
+      top: 20px;
+      left: 20px;
+      border-top-color: #2a2;
+      transform: rotate(-45deg); }
+      .simon-base .button#green.lit {
+        border-top-color: #4e4; }
+    .simon-base .button#yellow {
+      bottom: 20px;
+      left: 20px;
+      border-top-color: #aa2;
+      transform: rotate(-135deg); }
+      .simon-base .button#yellow.lit {
+        border-top-color: #ee4; }
+    .simon-base .button#red {
+      top: 20px;
+      right: 20px;
+      border-top-color: #a33;
+      transform: rotate(45deg); }
+      .simon-base .button#red.lit {
+        border-top-color: #f55; }
+    .simon-base .button#blue {
+      bottom: 20px;
+      right: 20px;
+      border-top-color: #33a;
+      transform: rotate(135deg); }
+      .simon-base .button#blue.lit {
+        border-top-color: #55f; }
+  .simon-base #controls {
+    width: 250px;
+    height: 250px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 125px;
+    left: 125px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 20px solid #333;
+    font-family: "Droid Sans Mono";
+    font-size: 12px;
+    color: #111; }
+    .simon-base #controls button:focus {
+      outline: none; }
+    .simon-base #controls #logo {
+      text-align: center;
+      font-family: "Sarpanch";
+      font-size: 45px;
+      font-weight: 900;
+      position: absolute;
+      left: 15px;
+      top: -10px; }
+      .simon-base #controls #logo #reg-mark {
+        font-size: 30px;
+        vertical-align: top; }
+    .simon-base #controls #counter {
+      position: absolute;
+      width: 60px;
+      height: 40px;
+      background-color: #111;
+      border-radius: 15px;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 25px;
+      padding-top: 2px;
+      color: #111;
+      top: 76.5px;
+      left: 13px; }
+      .simon-base #controls #counter:after {
+        content: "COUNT";
+        color: #111;
+        position: absolute;
+        font-size: 12px;
+        left: 12px;
+        bottom: -16px; }
+    .simon-base #controls #start, .simon-base #controls #strict {
+      width: 35px;
+      height: 35px;
+      border: 5px solid #333;
+      border-radius: 50%;
+      position: absolute;
+      top: 106px; }
+      .simon-base #controls #start:after, .simon-base #controls #strict:after {
+        font-size: 12px;
+        position: absolute;
+        bottom: -23px; }
+    .simon-base #controls #start {
+      background-color: #c00;
+      left: 88px; }
+      .simon-base #controls #start:after {
+        content: "START";
+        left: -5px; }
+    .simon-base #controls #strict {
+      background-color: #cc0;
+      left: 145px; }
+      .simon-base #controls #strict:before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        background: #700;
+        border: 2px solid #300;
+        border-radius: 50%;
+        position: absolute;
+        top: -16px;
+        left: 8px; }
+      .simon-base #controls #strict:after {
+        content: "STRICT";
+        left: -8px; }
+    .simon-base #controls #power-group {
+      position: absolute;
+      top: 165px;
+      left: 62.5px; }
+      .simon-base #controls #power-group button {
+        position: relative;
+        cursor: pointer;
+        height: 25px;
+        width: 45px;
+        top: 5px;
+        border: none;
+        background-color: #222; }
+        .simon-base #controls #power-group button:after {
+          content: '';
+          height: 21px;
+          width: 20px;
+          background: #7cf;
+          position: absolute;
+          top: 2px;
+          right: 2px; }
+    .simon-base #controls.power-on #counter {
+      background-color: #311;
+      color: #e00;
+      text-shadow: 0 0 5px #e00, 0 0 8px #800; }
+      .simon-base #controls.power-on #counter.off {
+        color: #111;
+        text-shadow: none; }
+      .simon-base #controls.power-on #counter:after {
+        text-shadow: none; }
+    .simon-base #controls.power-on #strict.on:before {
+      background-color: #f00; }
+    .simon-base #controls.power-on #power-group button:after {
+      left: 2px; }

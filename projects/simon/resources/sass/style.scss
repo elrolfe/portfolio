@@ -1,0 +1,236 @@
+$radius: 500px;
+$spacing: 20px;
+$button-radius: ($radius / 2) - ($spacing * 1.5);
+$control-radius: $radius / 4;
+$base-color: #333;
+
+.simon-base {
+    width: $radius;
+    height: $radius;
+    position: relative;
+    margin: 50px auto;
+    background-color: $base-color;
+    border-radius: 50%;
+
+    .button {
+        width: 0;
+        height: 0;
+        cursor: pointer;
+        position: absolute;
+        border-top: $button-radius solid #fff;
+        border-left: $button-radius solid transparent;
+        border-bottom: $button-radius solid transparent;
+        border-right: $button-radius solid transparent;
+        border-radius: $button-radius;
+        -webkit-clip-path: polygon(50% 50%, 100% 0%, 0% 0%);
+        clip-path: polygon(50% 50%, 100% 0%, 0% 0%);
+
+        &#green {
+            top: $spacing;
+            left: $spacing;
+            border-top-color: #2a2;
+            transform: rotate(-45deg);
+            
+            &.lit {
+                border-top-color: #4e4;
+            }
+        }
+
+        &#yellow {
+            bottom: $spacing;
+            left: $spacing;
+            border-top-color: #aa2;
+            transform: rotate(-135deg);
+            
+            &.lit {
+                border-top-color: #ee4;
+            }
+        }
+
+        &#red {
+            top: $spacing;
+            right: $spacing;
+            border-top-color: #a33;
+            transform: rotate(45deg);
+            
+            &.lit {
+                border-top-color: #f55;
+            }
+        }
+
+        &#blue {
+            bottom: $spacing;
+            right: $spacing;
+            border-top-color: #33a;
+            transform: rotate(135deg);
+            
+            &.lit {
+                border-top-color: #55f;
+            }
+        }
+    }
+
+    #controls {
+        width: $control-radius * 2;
+        height: $control-radius * 2;
+        box-sizing: border-box;
+        position: absolute;
+        top: $control-radius;
+        left: $control-radius;
+        background-color: #eee;
+        border-radius: 50%;
+        border: $spacing solid $base-color;
+        font-family: "Droid Sans Mono";
+        font-size: 12px;
+        color: #111;
+        
+        button:focus {
+            outline: none;
+        }
+        
+        #logo {
+            text-align: center;
+            font-family: "Sarpanch";
+            font-size: 45px;
+            font-weight: 900;
+            position: absolute;
+            left: 15px;
+            top: -10px;
+            
+            #reg-mark {
+                font-size: 30px;
+                vertical-align: top;
+            }
+        }
+    
+        #counter {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background-color: #111;
+            border-radius: 15px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 25px;
+            padding-top: 2px;
+            color: #111;
+            top: $control-radius / 2 + 14;
+            left: 13px;
+            
+            &:after {
+                content: "COUNT";
+                color: #111;
+                position: absolute;
+                font-size: 12px;
+                left: 12px;
+                bottom: -16px;
+            }
+        }
+        
+        #start, #strict {
+            width: 35px;
+            height: 35px;
+            border: 5px solid #333;
+            border-radius: 50%;      
+            position: absolute;
+            top: $control-radius - 19px;
+            
+            &:after {
+                font-size: 12px;
+                position: absolute;
+                bottom: -23px;        
+            }
+        }
+        
+        #start {
+            background-color: #c00;
+            left: $control-radius - 37px;
+            
+            &:after {
+                content: "START";
+                left: -5px;
+            }
+        }
+        
+        #strict {
+            background-color: #cc0;
+            left: $control-radius + 20px;
+            
+            &:before {
+                content: '';
+                width: 5px;
+                height: 5px;
+                background: #700;
+                border: 2px solid #300;
+                border-radius: 50%;
+                position: absolute;
+                top: -16px;
+                left: 8px;
+            }
+            
+            &:after {
+                content: "STRICT";
+                left: -8px;
+            }
+        }
+        
+        #power-group {
+            position: absolute;
+            top: $control-radius + 40;
+            left: $control-radius / 2;
+            
+            button {
+                position: relative;
+                cursor: pointer;
+                height: 25px;
+                width: 45px;
+                top: 5px;
+                border: none;
+                background-color: #222;
+                
+                &:after {
+                    content: '';
+                    height: 21px;
+                    width: 20px;
+                    background: #7cf;
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                }
+            }
+        }
+
+        &.power-on {
+            #counter {
+                background-color: #311;
+                color: #e00;
+                text-shadow: 0 0 5px #e00, 0 0 8px #800;
+                
+                &.off {
+                    color: #111;
+                    text-shadow: none;
+                }
+            
+                &:after {
+                    text-shadow: none;
+                }
+            }
+
+            #strict {
+                &.on {
+                    &:before {
+                        background-color: #f00;
+                    }
+                }        
+            }
+    
+            #power-group {
+                button {
+                    &:after {
+                        left: 2px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+    head
+        title Eric Rolfe's Portfolio - Simon Project
+        link( href='https://fonts.googleapis.com/css?family=Sarpanch:900,700', rel='stylesheet', type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono', rel='stylesheet', type='text/css')
+        link(href="/simon/css/style.css", rel="stylesheet")
+    body
+        .simon-base
+            .button#red
+            .button#blue
+            .button#yellow
+            .button#green
+            #controls
+                p#logo Simon<span id="reg-mark">&reg;</span>
+                p#counter
+                button#start
+                button#strict
+                span#power-group ON <button id="power">&nbsp;</button> OFF
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+    script(src="/simon/js/simon.js")
