@@ -1,0 +1,37 @@
+body {
+  font-family: Helvetica, Arial, sans-serif; }
+
+.chart-wrapper {
+  text-align: center; }
+  .chart-wrapper .bar {
+    position: relative;
+    fill: steelblue;
+    shape-rendering: crispEdges; }
+    .chart-wrapper .bar:hover {
+      fill: red; }
+  .chart-wrapper .axis text {
+    font-size: 12px; }
+  .chart-wrapper .axis path,
+  .chart-wrapper .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges; }
+  .chart-wrapper .x.axis path {
+    display: none; }
+  .chart-wrapper .y.axis text.label {
+    font-size: 16px; }
+  .chart-wrapper .tooltip {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+    background: lightblue;
+    border: 1px solid gray;
+    position: absolute;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left; }
+    .chart-wrapper .tooltip p {
+      margin: 0 0 5px;
+      font-style: italic; }
+    .chart-wrapper .tooltip h2 {
+      margin: 0; }
