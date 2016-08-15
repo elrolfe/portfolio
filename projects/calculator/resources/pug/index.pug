@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+    head
+        link(href="https://fonts.googleapis.com/css?family=VT323", rel="stylesheet", type="text/css")
+        link(href="https://fonts.googleapis.com/css?family=Lobster", rel="stylesheet", type="text/css")
+        link(href="/calculator/css/style.css", rel="stylesheet")
+    body
+        .calculator
+            .display
+                .equation
+                p.entry 0
+                p.memory
+            .label
+                p FreeCodeCamp
+            .buttons
+                button#memory-clear.memory-button MC
+                button#memory-recall.memory-button MR
+                button#memory-add.memory-button M+
+                button#memory-subtract.memory-button M-
+                button#clear-entry.clear-button C
+            .buttons
+                button#seven.number-button 7
+                button#eight.number-button 8
+                button#nine.number-button 9
+                button#square.unary-operator-button x<sup>2</sup>
+                button#root.unary-operator-button &radic;x
+            .buttons
+                button#four.number-button 4
+                button#five.number-button 5
+                button#six.number-button 6
+                button#multiply.operator-button &times;
+                button#divide.operator-button &divide;
+            .buttons
+                button#one.number-button 1
+                button#two.number-button 2
+                button#three.number-button 3
+                button#add.operator-button +
+                button#subtract.operator-button -
+            .buttons
+                button#percent.unary-operator-button %
+                button#zero.number-button 0
+                button#decimal.decimal-button .
+                button#negate.unary-operator-button &plusmn;
+                button#equal.evaluate-button =
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+    script(src="/calculator/js/calculator.js")
