@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/wiki-search/css/style.css")
+    body
+        #page-title: h1 Wikipedia Search
+        #random-button
+            a(href="https://en.wikipedia.org/wiki/Special:Random")
+                button.btn.btn-info(type="button")
+                    span.glyphicon.glyphicon-random
+                    | &nbsp;&nbsp;&nbsp;Random Page
+        #search-bar.form-inline
+            input.form-control#search(type="search", size=40, placeholder="Search for...")
+            | &nbsp;
+            button.btn.btn-info#search-button(type="button"): span.glyphicon.glyphicon-search
+            | &nbsp;
+            button.btn.btn-info#clear-search(type="button") Clear Search
+        .container
+            #result
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
+    script(src="/wiki-search/js/wiki-search.js")
