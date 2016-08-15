@@ -1,6 +1,6 @@
 "use strict";
 
-var baseDir = process.cwd() + "/projects/random-quote";
+const baseDir = process.cwd() + "/projects/random-quote";
 
 var express = require("express"),
     subapp = express(),
