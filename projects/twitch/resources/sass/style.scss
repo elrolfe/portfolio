@@ -1,0 +1,68 @@
+thead {
+    background-color: #888888;
+}
+
+.title {
+    font-family: "Bangers";
+    font-size: 40px;
+}
+
+.tear-tab {
+    list-style: none;
+    padding-left: 15px;
+    font-family: "Bangers";
+    font-size: 21px;
+    
+    li {
+        cursor: pointer;
+        
+        &.active {
+            list-style: disc;
+        }
+    }
+}
+
+.logo-column {
+    width: 120px;
+    text-align: center;
+}
+
+.streamer-logo {
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #000000;
+    width: 100px;
+    height: 100px;
+}
+
+.info-column {
+    a {
+        color: #333333;
+        
+        &:hover {
+            color: #337ab7;
+            text-decoration: none;
+        }
+    }
+}
+
+.name {
+    font-family: "Rock Salt";
+    font-size: 35px;
+    margin: 10px 0 5px;
+}
+
+.stream-data {
+    font-family: "Indie Flower";
+    font-size: 15px;
+}
+
+.status-column {
+    width: 100px;
+    font-family: "Indie Flower";
+    font-size: 30px;
+    
+    p {
+        padding-top: 25px;
+    }
+}

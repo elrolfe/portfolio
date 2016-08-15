@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    head
+        link(href="https://fonts.googleapis.com/css?family=Bangers", rel="stylesheet", type="text/css")
+        link(href="https://fonts.googleapis.com/css?family=Rock+Salt", rel="stylesheet", type="text/css")
+        link(href="https://fonts.googleapis.com/css?family=Indie+Flower", rel="stylesheet", type="text/css")
+        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", rel="stylesheet")
+        link(href="/twitch/css/style.css", rel="stylesheet")
+    body
+        .container
+            table.table
+                thead
+                    tr.header
+                        th(colspan="2")
+                            p.title Twitch.tv Streams <input type="search" id="search" class="form-control"
+                        th
+                            ul.tear-tab
+                                li.active#all-users All&nbsp;Users
+                                li#online-users Online
+                                li#offline-users Offline
+                                li#search-users Search
+                tbody
+        script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+        script(src="/twitch/js/twitch.js")
