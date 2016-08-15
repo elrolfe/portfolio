@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+    head
+        link(href="https://fonts.googleapis.com/css?family=Play:400,700", rel="stylesheet", type="text/css")
+        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", rel="stylesheet")
+        link(href="/pomodoro/css/style.css", rel="stylesheet")
+    body
+        .container
+            h1.title.text-center(style="font-family: Play") Pomodoro Clock
+            h3.subtitle.text-center FreeCodeCamp.com
+            .row
+                .col-lg-3.col-lg-offset-2
+                    .set-timer.activity
+                        h3.text-center Activity Time
+                        p.text-center
+                            button.decrement#dec-activity-time -
+                            span.timer-value#activity-time 25
+                            button.increment#inc-activity-time +
+                        p.small-text.text-center Minutes
+                .col-lg-3.col-lg-offset-2
+                    .set-timer.break
+                        h3.text-center Break Time
+                        p.text-center
+                            button.decrement#dec-break-time -
+                            span.timer-value#break-time 5
+                            button.increment#inc-break-time +
+                        p.small-text.text-center Minutes
+            .row
+                .col-lg-6.col-lg-offset-3
+                    canvas.timer#timer
+            audio#alert
+                source(src="/pomodoro/mp3/chime.mp3" type="audio/mpeg")
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js")
+    script(src="/pomodoro/js/pomodoro.js")
