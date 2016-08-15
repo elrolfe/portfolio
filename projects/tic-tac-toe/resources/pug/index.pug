@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        link(href="https://fonts.googleapis.com/css?family=Sigmar+One" rel="stylesheet" type="text/css")
+        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", rel="stylesheet")
+        link(href="/tic-tac-toe/css/style.css", rel="stylesheet")
+    body
+        .overlay
+            .message-box
+                p.text-center
+        .header
+            h1.text-center Tic-Tac-Toe
+            h3.text-center FreeCodeCamp
+            p.text-center AI Level: <input type="radio" checked name="ai-level" value="0" id="easy-level"> <label for="easy-level">Easy</label> <input type="radio" name="ai-level" value="1" id="good-level"> <label for="good-level">Good</label> <input type="radio" name="ai-level" value="2" id="expert-level"> <label for="expert-level">Expert</label>
+            p.text-center I want to play as: <input type="radio" checked name="player-choice" value="x" id="player-x"> <label for="player-x">X</label><input type="radio" name="player-choice" value="o" id="player-o"> <label for="player-o">O</label><button id="start">Play</button>
+        .game-wrapper
+            .top.row
+                .game-cell.left.empty
+                .game-cell.center.empty
+                .game-cell.right.empty
+            .middle.row
+                .game-cell.left.empty
+                .game-cell.center.empty
+                .game-cell.right.empty
+            .bottom.row
+                .game-cell.left.empty
+                .game-cell.center.empty
+                .game-cell.right.empty
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+    script(src="/tic-tac-toe/js/tic-tac-toe.js")
