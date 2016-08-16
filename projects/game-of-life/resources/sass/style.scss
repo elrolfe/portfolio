@@ -1,0 +1,126 @@
+$background-color: #118;
+$text-color: #ccc;
+
+$button-active-color: #aaf;
+
+$game-area-background-color: transparent;
+
+$cell-border-color: #666;
+$cell-dead-color: #000;
+$cell-alive-color: #55f;
+
+body {
+    background-color: $background-color;
+    color: $text-color;
+}
+
+#reaction {
+    width: 100%;
+
+    .game-controls {
+        text-align: center;
+        margin: 5px 0;
+
+        .spacer {
+            display: inline-block;
+            width: 100px;
+        }
+
+        p {
+            width: 200px;
+            display: inline-block;
+            font-size: 25px;
+            margin: 0 0 0 15px;
+        }
+
+        button {
+            min-width: 80px;
+            height: 30px;
+            font-size: 20px;
+            margin-left: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: none;
+            background-color: #fff;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &.active {
+                background-color: $button-active-color;
+            }
+        }
+
+        label {
+            font-size: 25px;
+            margin-right: 10px;
+            margin-left: 25px;
+            
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
+        input[type="number"] {
+            font-size: 20px;
+            border-radius: 15px;
+            padding-left: 10px;
+            width: 50px;
+        }
+    }
+
+    .game-grid {
+        background-color: $game-area-background-color;
+        line-height: 15px;
+        text-align: center;
+        
+        .game-row {
+            height: 15px;
+            
+            .game-cell {
+                display: inline-block;
+                box-sizing: border-box;
+                background-color: $cell-dead-color;
+                width: 15px;
+                height: 15px;
+                border-right: 1px solid $cell-border-color;
+                border-top: 1px solid $cell-border-color;
+                
+                &.alive {
+                    background-color: $cell-alive-color;
+                }
+
+                &:first-child {
+                    width: 25px;
+                    border-left: 10px solid $cell-border-color;
+                }
+                
+                &:last-child {
+                    width: 25px;
+                    border-right: 10px solid $cell-border-color;
+                }
+            }
+
+            &:first-child {
+                line-height: 25px;
+                height: 25px;
+                
+                .game-cell {
+                    border-top: 10px solid $cell-border-color;
+                    height: 25px;
+                }
+            }
+
+            &:last-child {
+                line-height: 25px;
+                height: 25px;
+                
+                .game-cell {
+                    border-bottom: 10px solid $cell-border-color;
+                    height: 25px;
+                }
+            }
+        }
+    }   
+}
