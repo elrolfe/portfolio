@@ -1,0 +1,104 @@
+body {
+  background-color: #131;
+  font-family: "Permanent Marker", cursive; }
+
+header {
+  height: 70px;
+  background-color: #320; }
+  header img {
+    margin-top: 10px;
+    margin-right: 50px;
+    height: 50px;
+    float: right; }
+
+#reaction {
+  width: 80%;
+  margin: 0 auto; }
+  #reaction .leaderboard {
+    background-color: #320;
+    color: #ddd;
+    border-radius: 20px;
+    margin: 30px 0 0; }
+    #reaction .leaderboard p {
+      text-align: center; }
+      #reaction .leaderboard p.title {
+        font-size: 30px;
+        margin: 10px 0 5px; }
+      #reaction .leaderboard p label {
+        margin: 0 30px 0 5px; }
+        #reaction .leaderboard p label:last-child {
+          margin-right: 0; }
+  #reaction table {
+    width: 100%;
+    margin: 30px 0 0;
+    border-collapse: collapse; }
+    #reaction table thead tr {
+      background-color: #320;
+      color: #ddd; }
+      #reaction table thead tr th {
+        padding: 5px 0;
+        font-size: 20px; }
+        #reaction table thead tr th.sortable a {
+          color: #ddd; }
+          #reaction table thead tr th.sortable a:hover {
+            color: #dd9; }
+        #reaction table thead tr th.sort-asc a {
+          position: relative; }
+          #reaction table thead tr th.sort-asc a:after {
+            content: '';
+            border-bottom: 10px solid #ddd;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            bottom: 6px;
+            right: -25px; }
+          #reaction table thead tr th.sort-asc a:hover:after {
+            border-bottom-color: #dd9; }
+        #reaction table thead tr th.sort-desc a {
+          position: relative; }
+          #reaction table thead tr th.sort-desc a:after {
+            content: '';
+            border-top: 10px solid #ddd;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            bottom: 6px;
+            right: -25px; }
+          #reaction table thead tr th.sort-desc a:hover:after {
+            border-top-color: #dd9; }
+    #reaction table tbody {
+      color: #000; }
+      #reaction table tbody tr td {
+        border: 1px solid #888;
+        padding: 5px 10px;
+        font-size: 20px;
+        text-align: center;
+        vertical-align: middle; }
+        #reaction table tbody tr td a {
+          color: #000;
+          text-decoration: none; }
+          #reaction table tbody tr td a:hover {
+            text-decoration: underline; }
+        #reaction table tbody tr td img {
+          width: 40px;
+          height: 40px;
+          margin: 5px 20px 0px 5px;
+          border: 2px solid #131;
+          box-sizing: border-box;
+          border-radius: 50%; }
+        #reaction table tbody tr td:first-child {
+          border-left: none; }
+        #reaction table tbody tr td:last-child {
+          border-right: none; }
+        #reaction table tbody tr td:nth-child(2) {
+          text-align: left; }
+      #reaction table tbody tr:nth-child(odd) {
+        background-color: #dd9; }
+      #reaction table tbody tr:nth-child(even) {
+        background-color: #cec; }
+      #reaction table tbody tr:last-child td {
+        border-bottom: none; }
+        #reaction table tbody tr:last-child td:first-child {
+          border-bottom-left-radius: 20px; }
+        #reaction table tbody tr:last-child td:last-child {
+          border-bottom-right-radius: 20px; }
