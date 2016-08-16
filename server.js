@@ -7,18 +7,29 @@ var express = require("express"),
     pug = require("pug"),
     sass = require("node-sass-middleware");
     
-fs.readdir(process.cwd() + "/projects", (err, files) => {
-    if (err) throw err;
+try {
+    var files = fs.readdirSync(process.cwd() + "/projects");
+} catch(e) {
+    console.log("fs.readdirSync could not read the directory '" + process.cwd() + "/projects'");
+    return -1;
+}
 
-    files.forEach((file) => {
-        var path = process.cwd() + "/projects/" + file;
-        if (fs.statSync(path).isDirectory()) {
-            try {
-                fs.accessSync(path + "/subapp.js", fs.F_OK);
-                app.use("/" + file, require(path + "/subapp.js"));
-            } catch(e) {}
+files.forEach((file) => {
+    var path = process.cwd() + "/projects/" + file;
+    if (fs.statSync(path).isDirectory()) {
+        try {
+            fs.accessSync(path + "/subapp.js", fs.F_OK);
+        } catch(e) {
+            return;
         }
-    });
+
+        try {
+            app.use("/" + file, require(path + "/subapp.js"));
+        } catch (e) {
+            console.log("Could not load the " + file + " module!\n    " + e.message);
+        }
+        console.log("Loaded " + file + " on path '/" + file + "'");
+    }
 });
 
 app.set("views", process.cwd() + "/resources/pug");
