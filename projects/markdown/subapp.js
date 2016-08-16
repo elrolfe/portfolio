@@ -21,8 +21,7 @@ subapp.use(sass({
 
 subapp.use("/css", express.static(baseDir + "/resources/css"));
 subapp.use("/js", babel({
-    srcPath: baseDir + "/resources/js",
-    cachePath: "memory"
+    srcPath: baseDir + "/resources/js"
 }));
 
 router(subapp);
