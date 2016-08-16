@@ -1,0 +1,43 @@
+body {
+  font-family: "Helvetica", "Arial", sans-serif; }
+
+#output .wrapper {
+  width: 960px;
+  margin: 20px auto; }
+  #output .wrapper .markdown {
+    width: 100%; }
+    #output .wrapper .markdown textarea {
+      width: 100%;
+      height: 400px; }
+    #output .wrapper .markdown h1, #output .wrapper .markdown h2, #output .wrapper .markdown h3, #output .wrapper .markdown h4, #output .wrapper .markdown h5, #output .wrapper .markdown h6 {
+      margin: 20px 0; }
+    #output .wrapper .markdown h3 {
+      color: #5be;
+      border-bottom: 1px solid #ccc; }
+    #output .wrapper .markdown code {
+      background-color: #dcc;
+      color: #f00;
+      padding: 0 2px; }
+    #output .wrapper .markdown table {
+      border-collapse: collapse;
+      border: solid #ccc;
+      border-width: 1px 1px 2px; }
+      #output .wrapper .markdown table thead {
+        background-color: #eee; }
+        #output .wrapper .markdown table thead th {
+          border: 1px solid #ccc;
+          color: #5be;
+          padding: 20px 10px; }
+      #output .wrapper .markdown table tbody td {
+        padding: 5px;
+        border: 1px solid #ccc; }
+    #output .wrapper .markdown blockquote {
+      font-style: italic;
+      position: relative; }
+      #output .wrapper .markdown blockquote:before {
+        content: '';
+        width: 2px;
+        height: 100%;
+        background-color: #ccc;
+        position: absolute;
+        left: -40px; }
