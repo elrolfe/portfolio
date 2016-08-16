@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+    head
+        title Eric Rolfe's Portfolio - D3 Scatter Plot Project
+        link(href="/scatter-plot/css/style.css", rel="stylesheet")
+    body
+        .chart-wrapper
+            .tooltip
+                h2.cyclist-name
+                p Nationality: <span class="nationality"></span>
+                p Year: <span class="year"></span> Time: <span class="time"></span>
+                hr
+                p.allegation
+            svg.chart
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js")
+    script(src="/scatter-plot/js/scatter-plot.js")

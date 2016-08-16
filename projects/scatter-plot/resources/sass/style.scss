@@ -1,0 +1,77 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: url("https://s19.postimg.org/yozy1dftf/alpedhuez_remastered.jpg") no-repeat;
+    background-size: 100%;
+    background-position: 50% 50%;
+}
+
+.chart-wrapper {
+    text-align: center;
+    
+    .title {
+        font-size: 40px;
+        text-anchor: middle;
+    }
+    
+    .subtitle {
+        font-size: 20px;
+        text-anchor: middle;
+    }
+    
+    .clean {
+        fill: #0b0;
+    }
+    
+    .doping {
+        fill: #e00;
+    }
+    
+    .inactive-link {
+        pointer-events: none;
+    }
+    
+    text {
+        font-size: 12px;
+    }
+    
+    .legend rect,
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+    
+    .tooltip {
+        background-color: #333;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        border-top-right-radius: 0;
+        color: #eee;
+        padding: 10px;
+        position: absolute;
+        opacity: 0;
+        width: 200px;
+        
+        &:after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background-color: #333;
+            position: absolute;
+            right: -10.5px;
+            top: 4.5px;
+            transform: rotate(-45deg);
+        }
+        
+        h2 {
+            font-size: 16px;
+            margin: 0 0 4px;
+        }
+        
+        p {
+            font-size: 12px;
+            margin: 0;
+        }
+    }
+}

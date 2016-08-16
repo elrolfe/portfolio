@@ -1,0 +1,53 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: url("https://s19.postimg.org/yozy1dftf/alpedhuez_remastered.jpg") no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%; }
+
+.chart-wrapper {
+  text-align: center; }
+  .chart-wrapper .title {
+    font-size: 40px;
+    text-anchor: middle; }
+  .chart-wrapper .subtitle {
+    font-size: 20px;
+    text-anchor: middle; }
+  .chart-wrapper .clean {
+    fill: #0b0; }
+  .chart-wrapper .doping {
+    fill: #e00; }
+  .chart-wrapper .inactive-link {
+    pointer-events: none; }
+  .chart-wrapper text {
+    font-size: 12px; }
+  .chart-wrapper .legend rect,
+  .chart-wrapper .axis path,
+  .chart-wrapper .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges; }
+  .chart-wrapper .tooltip {
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    color: #eee;
+    padding: 10px;
+    position: absolute;
+    opacity: 0;
+    width: 200px; }
+    .chart-wrapper .tooltip:after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-color: #333;
+      position: absolute;
+      right: -10.5px;
+      top: 4.5px;
+      transform: rotate(-45deg); }
+    .chart-wrapper .tooltip h2 {
+      font-size: 16px;
+      margin: 0 0 4px; }
+    .chart-wrapper .tooltip p {
+      font-size: 12px;
+      margin: 0; }
