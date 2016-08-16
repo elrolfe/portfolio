@@ -1,0 +1,132 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: url("/heatmap/img/Earth_from_Space.jpg") no-repeat;
+    background-color: #000;
+    background-position: 50% 50%;
+    background-size: 100%;
+    text-align: center;
+}
+
+.chart-wrapper {
+    background-color: rgba(255, 255, 255, .65);
+    text-align: center;
+    display: inline-block;
+    
+    h1 { 
+        font-size: 28px;
+        margin-bottom: 4px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 4px;
+    }
+    
+    p {
+        font-size: 10px;
+        margin: 0;
+    }
+    
+    .tooltip {
+        background-color: #fff;
+        border: 1px solid #bbb;
+        border-radius: 10px;
+        opacity: 0;
+        padding: 10px;
+        position: absolute;
+        width: 220px;
+        
+        h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+        
+        .average {
+            font-size: 14px;
+            margin-top: 4px;
+            margin-bottom: 0px;
+        }
+        
+        .baseline {
+            font-size: 10px;
+            margin-top: 4px;
+            margin-bottom: 0;
+        }
+    }
+    
+    .axis {
+        path,
+        &.y line {
+            display: none;
+        }
+        
+        line {
+            stroke: #000;
+        }
+        
+        &.legend {
+            line {
+                display: none;
+            }
+            
+            text {
+                font-size: 10px;
+            }
+        }
+    }
+    
+    .chart-background {
+        fill: #fff;
+    }
+    
+    .cell {
+        fill: #000;
+        stroke: #ccc;
+        
+        &.cooler-5 {
+            fill: #082567;
+        }
+        
+        &.cooler-4 {
+            fill: #003399;
+        }
+        
+        &.cooler-3 {
+            fill: #2a52be;
+        }
+        
+        &.cooler-2 {
+            fill: #92a1cf;
+        }
+        
+        &.cooler-1 {
+            fill: #ccccff;
+        }
+        
+        &.cooler-0,
+        &.warmer-0 {
+            fill: #fffafa;
+        }
+        
+        &.warmer-1 {
+            fill: #f4c2c2;
+        }
+        
+        &.warmer-2 {
+            fill: #ff6961;
+        }
+        
+        &.warmer-3 {
+            fill: #ce1620;
+        }
+        
+        &.warmer-4 {
+            fill: #b31b1b;
+        }
+        
+        &.warmer-5 {
+            fill: #701c1c;
+        }
+    }
+}

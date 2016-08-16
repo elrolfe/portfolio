@@ -1,0 +1,77 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: url("/heatmap/img/Earth_from_Space.jpg") no-repeat;
+  background-color: #000;
+  background-position: 50% 50%;
+  background-size: 100%;
+  text-align: center; }
+
+.chart-wrapper {
+  background-color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  display: inline-block; }
+  .chart-wrapper h1 {
+    font-size: 28px;
+    margin-bottom: 4px; }
+  .chart-wrapper h2 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 4px; }
+  .chart-wrapper p {
+    font-size: 10px;
+    margin: 0; }
+  .chart-wrapper .tooltip {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    opacity: 0;
+    padding: 10px;
+    position: absolute;
+    width: 220px; }
+    .chart-wrapper .tooltip h2 {
+      font-size: 20px;
+      margin: 0; }
+    .chart-wrapper .tooltip .average {
+      font-size: 14px;
+      margin-top: 4px;
+      margin-bottom: 0px; }
+    .chart-wrapper .tooltip .baseline {
+      font-size: 10px;
+      margin-top: 4px;
+      margin-bottom: 0; }
+  .chart-wrapper .axis path,
+  .chart-wrapper .axis.y line {
+    display: none; }
+  .chart-wrapper .axis line {
+    stroke: #000; }
+  .chart-wrapper .axis.legend line {
+    display: none; }
+  .chart-wrapper .axis.legend text {
+    font-size: 10px; }
+  .chart-wrapper .chart-background {
+    fill: #fff; }
+  .chart-wrapper .cell {
+    fill: #000;
+    stroke: #ccc; }
+    .chart-wrapper .cell.cooler-5 {
+      fill: #082567; }
+    .chart-wrapper .cell.cooler-4 {
+      fill: #003399; }
+    .chart-wrapper .cell.cooler-3 {
+      fill: #2a52be; }
+    .chart-wrapper .cell.cooler-2 {
+      fill: #92a1cf; }
+    .chart-wrapper .cell.cooler-1 {
+      fill: #ccccff; }
+    .chart-wrapper .cell.cooler-0, .chart-wrapper .cell.warmer-0 {
+      fill: #fffafa; }
+    .chart-wrapper .cell.warmer-1 {
+      fill: #f4c2c2; }
+    .chart-wrapper .cell.warmer-2 {
+      fill: #ff6961; }
+    .chart-wrapper .cell.warmer-3 {
+      fill: #ce1620; }
+    .chart-wrapper .cell.warmer-4 {
+      fill: #b31b1b; }
+    .chart-wrapper .cell.warmer-5 {
+      fill: #701c1c; }

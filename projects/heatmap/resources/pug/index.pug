@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        title Eric Rolfe's Portfolio - D3 Heat Map Project
+        link(href="/heatmap/css/style.css", rel="stylesheet")
+    body
+        .chart-wrapper
+            h1 Monthly Global Land Surface Temperature
+            h2
+                span.minYear
+                | &nbsp;-&nbsp;
+                span.maxYear
+            p Temperatures are in Celcius and reported as anomolies relative to the january 1951 &#8211; December 1980 average.
+            p Estimate January 1951 &#8211; December 1980 absolute temperature &deg;C 8.66 &#177;0.07
+            svg.chart
+            .tooltip
+                h2
+                    span.year
+                    | &nbsp;-&nbsp;
+                    span.month
+                p.average
+                    | Averate Temperature:
+                    span.temperature
+                    | &deg; C
+                p.baseline
+                    span.difference
+                    | &deg; off base temperature
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js")
+    script(src="/heatmap/js/heatmap.js")
