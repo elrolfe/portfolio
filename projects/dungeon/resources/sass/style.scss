@@ -1,0 +1,491 @@
+$border-image: url("/dungeon/img/Wall_Border.png") 33 repeat;
+$border-color: #333;
+$entry-color: #cc5;
+$exit-color: #5c5;
+$boss-color: #f00;
+$floor-color: #440;
+$wall-color: #888;
+$text-background: #000;
+$text-color: #fff;
+
+$unseen: url("/dungeon/img/dngn_unseen.png");
+$unseen-color: #000;
+
+$player-base: url("/dungeon/img/human_m.png");
+$player-boots: url("/dungeon/img/short_brown.png");
+$player-legs: url("/dungeon/img/pants_black.png");
+$player-torso: url("/dungeon/img/shirt_vest.png");
+$player-hair: url("/dungeon/img/short_black.png");
+
+$player-dead: url("/dungeon/img/bone.png");
+
+$player-armor-1: url("/dungeon/img/leather_armour2.png");
+$player-armor-2: url("/dungeon/img/banded.png");
+$player-armor-3: url("/dungeon/img/ringmail.png");
+$player-armor-4: url("/dungeon/img/chainmail3.png");
+$player-armor-5: url("/dungeon/img/plate.png");
+
+$player-weapon-1: url("/dungeon/img/quarterstaff3.png");
+$player-weapon-2: url("/dungeon/img/club_slant.png");
+$player-weapon-3: url("/dungeon/img/dagger_slant.png");
+$player-weapon-4: url("/dungeon/img/whip.png");
+$player-weapon-5: url("/dungeon/img/sabre.png");
+$player-weapon-6: url("/dungeon/img/scimitar.png");
+$player-weapon-7: url("/dungeon/img/short_sword_slant.png");
+$player-weapon-8: url("/dungeon/img/long_sword_slant.png");
+$player-weapon-9: url("/dungeon/img/axe.png");
+
+$item-enemy-0: url("/dungeon/img/rat.png");
+$item-enemy-1: url("/dungeon/img/hound.png");
+$item-enemy-2: url("/dungeon/img/small_snake.png");
+$item-enemy-3: url("/dungeon/img/giant_ant.png");
+$item-enemy-4: url("/dungeon/img/trapdoor_spider.png");
+$item-enemy-5: url("/dungeon/img/scorpion.png");
+$item-enemy-6: url("/dungeon/img/killer_bee.png");
+$item-enemy-7: url("/dungeon/img/hobgoblin.png");
+$item-enemy-8: url("/dungeon/img/kobold.png");
+$item-enemy-9: url("/dungeon/img/orc_warrior.png");
+
+$item-armor-1: url("/dungeon/img/leather_armour2.png");
+$item-armor-2: url("/dungeon/img/banded_mail1.png");
+$item-armor-3: url("/dungeon/img/ring_mail2.png");
+$item-armor-4: url("/dungeon/img/chain_mail3.png");
+$item-armor-5: url("/dungeon/img/plate_mail1.png");
+
+$item-weapon-1: url("/dungeon/img/quarterstaff.png");
+$item-weapon-2: url("/dungeon/img/club.png");
+$item-weapon-3: url("/dungeon/img/dagger.png");
+$item-weapon-4: url("/dungeon/img/bullwhip.png");
+$item-weapon-5: url("/dungeon/img/sabre1_silver.png");
+$item-weapon-6: url("/dungeon/img/scimitar1.png");
+$item-weapon-7: url("/dungeon/img/short_sword2.png");
+$item-weapon-8: url("/dungeon/img/long_sword1.png");
+$item-weapon-9: url("/dungeon/img/battle_axe1.png");
+
+$item-food-0: url("/dungeon/img/sausage.png");
+$item-food-1: url("/dungeon/img/apple.png");
+$item-food-2: url("/dungeon/img/bread_ration.png");
+$item-food-3: url("/dungeon/img/cheese.png");
+$item-food-4: url("/dungeon/img/chunk.png");
+
+$boss: url("/dungeon/img/dragon.png");
+
+$dungeon-entry: url("/dungeon/img/stone_stairs_up.png");
+$dungeon-exit: url("/dungeon/img/stone_stairs_down.png");
+
+$floor-0: url("/dungeon/img/sandstone_floor0.png");
+$floor-1: url("/dungeon/img/sandstone_floor1.png");
+$floor-2: url("/dungeon/img/sandstone_floor2.png");
+$floor-3: url("/dungeon/img/sandstone_floor3.png");
+$floor-4: url("/dungeon/img/sandstone_floor4.png");
+$floor-5: url("/dungeon/img/sandstone_floor5.png");
+$floor-6: url("/dungeon/img/sandstone_floor6.png");
+$floor-7: url("/dungeon/img/sandstone_floor7.png");
+$floor-8: url("/dungeon/img/sandstone_floor8.png");
+$floor-9: url("/dungeon/img/sandstone_floor9.png");
+
+$fountain-0: url("/dungeon/img/dngn_blue_fountain.png");
+$fountain-1: url("/dungeon/img/dngn_blue_fountain2.png");
+
+$statue: url("/dungeon/img/dngn_orcish_idol.png");
+
+$wall-0: url("/dungeon/img/brick_brown_vines1.png");
+$wall-1: url("/dungeon/img/brick_brown_vines2.png");
+$wall-2: url("/dungeon/img/brick_brown_vines3.png");
+$wall-3: url("/dungeon/img/brick_brown_vines4.png");
+
+$wall-banner: url("/dungeon/img/banner1.png");
+
+$wall-torch-0: url("/dungeon/img/torch1.png");
+$wall-torch-1: url("/dungeon/img/torch2.png");
+$wall-torch-2: url("/dungeon/img/torch3.png");
+$wall-torch-3: url("/dungeon/img/torch4.png");
+
+body {
+    background-color: $text-background;
+    color: $text-color;
+    font-family: Tillana, sans-serif;
+}
+
+#reaction {
+    width: 100%;
+    
+    .dungeon-crawler {
+        width: 1200px;
+        margin: 0 auto;
+        
+        .player-stats,
+        .game-stats {
+            line-height: 16px;
+            width: 250px;
+            
+            h2 {
+                margin-top: 16px;    
+            }
+            
+            p {
+                margin-bottom: 8px;
+            }
+            
+            ul {
+                list-style: none;
+                margin: 0px;
+                padding: 0;
+            }
+        }
+
+        .player-stats {
+            float: left;            
+        }
+        
+        .game-stats {
+            float: right;
+            
+            textarea {
+                width: 100%;
+                height: 300px;
+                font-family: Tillana, sans-serif;
+                font-size: 14px;
+                resize: none;
+                padding: 10px;
+                border: 3px solid $text-color;
+                border-radius: 20px;
+                background-color: $text-background;
+                color: $text-color;
+                overflow: hidden;
+            }
+        }
+    
+        .game-grid {
+            font-size: 0;
+            line-height: 32px;
+            border: 32px solid $border-color;
+            border-image: $border-image;
+            width: 608px;
+            height: 352px;
+            margin: 0 auto;
+
+            .game-row {
+                height: 32px;
+                padding: 0;
+                margin: 0;
+
+                .game-tile {
+                    height: 32px;
+                    width: 32px;
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    background-image: $unseen;
+                    background-color: $unseen-color;
+                    display: inline-block;
+
+                    .player {
+                        height: 32px;
+                        width: 32px;
+                        position: relative;
+                        background-image: $player-hair, $player-torso, $player-legs, $player-boots, $player-base;
+                        
+                        .armor-1,
+                        .armor-2,
+                        .armor-3,
+                        .armor-4,
+                        .armor-5,
+                        .weapon-1,
+                        .weapon-2,
+                        .weapon-3,
+                        .weapon-4,
+                        .weapon-5,
+                        .weapon-6,
+                        .weapon-7,
+                        .weapon-8,
+                        .weapon-9 {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 32px;
+                            width: 32px;
+                        }
+
+                        .armor-1 { background-image: $player-armor-1; }
+                        .armor-2 { background-image: $player-armor-2; }
+                        .armor-3 { background-image: $player-armor-3; }
+                        .armor-4 { background-image: $player-armor-4; }
+                        .armor-5 { background-image: $player-armor-5; }
+                        .weapon-1 { background-image: $player-weapon-1; }
+                        .weapon-2 { background-image: $player-weapon-2; }
+                        .weapon-3 { background-image: $player-weapon-3; }
+                        .weapon-4 { background-image: $player-weapon-4; }
+                        .weapon-5 { background-image: $player-weapon-5; }
+                        .weapon-6 { background-image: $player-weapon-6; }
+                        .weapon-7 { background-image: $player-weapon-7; }
+                        .weapon-8 { background-image: $player-weapon-8; }
+                        .weapon-9 { background-image: $player-weapon-9; }
+
+                        &.dead {
+                            background-image: $player-dead;
+
+                            .armor-1,
+                            .armor-2,
+                            .armor-3,
+                            .armor-4,
+                            .armor-5,
+                            .weapon-1,
+                            .weapon-2,
+                            .weapon-3,
+                            .weapon-4,
+                            .weapon-5,
+                            .weapon-6,
+                            .weapon-7,
+                            .weapon-8,
+                            .weapon-9 {
+                                display: none;
+                            }                            
+                        }
+
+                    }
+
+                    &.entry-0 {
+                        background-image: $dungeon-entry, $floor-0;
+                        background-color: $entry-color;
+                    }
+
+                    &.exit-0 {
+                        background-image: $dungeon-exit, $floor-0;
+                        background-color: $exit-color;
+                    }
+
+                    &.floor-0 {
+                        background-image: $floor-0;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-1 {
+                        background-image: $floor-1;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-2 {
+                        background-image: $floor-2;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-3 {
+                        background-image: $floor-3;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-4 {
+                        background-image: $floor-4;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-5 {
+                        background-image: $floor-5;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-6 {
+                        background-image: $floor-6;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-7 {
+                        background-image: $floor-7;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-8 {
+                        background-image: $floor-8;
+                        background-color: $floor-color;
+                    }
+
+                    &.floor-9 {
+                        background-image: $floor-9;
+                        background-color: $floor-color;
+                    }
+
+                    &.fountain-0 {
+                        background-image: $fountain-0, $floor-0;
+                        background-color: $floor-color;
+                    }
+
+                    &.fountain-1 {
+                        background-image: $fountain-1, $floor-0;
+                        background-color: $floor-color;
+                    }
+
+                    &.statue-0 {
+                        background-image: $statue, $floor-0;
+                        background-color: $floor-color;
+                    }
+
+                    &.wall-0 {
+                        background-image: $wall-0;
+                        background-color: $wall-color;
+
+                        &.banner {
+                            background-image: $wall-banner, $wall-0;
+                        }
+
+                        &.torch-0 {
+                            background-image: $wall-torch-0, $wall-0;
+                        }
+
+                        &.torch-1 {
+                            background-image: $wall-torch-1, $wall-0;
+                        }
+
+                        &.torch-2 {
+                            background-image: $wall-torch-2, $wall-0;
+                        }
+
+                        &.torch-3 {
+                            background-image: $wall-torch-3, $wall-0;
+                        }
+                    }
+
+                    &.wall-1 {
+                        background-image: $wall-1;
+                        background-color: $wall-color;
+
+                        &.banner {
+                            background-image: $wall-banner, $wall-1;
+                        }
+
+                        &.torch-0 {
+                            background-image: $wall-torch-0, $wall-1;
+                        }
+
+                        &.torch-1 {
+                            background-image: $wall-torch-1, $wall-1;
+                        }
+
+                        &.torch-2 {
+                            background-image: $wall-torch-2, $wall-1;
+                        }
+
+                        &.torch-3 {
+                            background-image: $wall-torch-3, $wall-1;
+                        }
+                    }
+
+                    &.wall-2 {
+                        background-image: $wall-2;
+                        background-color: $wall-color;
+
+                        &.banner {
+                            background-image: $wall-banner, $wall-2;
+                        }
+
+                        &.torch-0 {
+                            background-image: $wall-torch-0, $wall-2;
+                        }
+
+                        &.torch-1 {
+                            background-image: $wall-torch-1, $wall-2;
+                        }
+
+                        &.torch-2 {
+                            background-image: $wall-torch-2, $wall-2;
+                        }
+
+                        &.torch-3 {
+                            background-image: $wall-torch-3, $wall-2;
+                        }
+                    }
+
+                    &.wall-3 {
+                        background-image: $wall-3;
+                        background-color: $wall-color;
+
+                        &.banner {
+                            background-image: $wall-banner, $wall-3;
+                        }
+
+                        &.torch-0 {
+                            background-image: $wall-torch-0, $wall-3;
+                        }
+
+                        &.torch-1 {
+                            background-image: $wall-torch-1, $wall-3;
+                        }
+
+                        &.torch-2 {
+                            background-image: $wall-torch-2, $wall-3;
+                        }
+
+                        &.torch-3 {
+                            background-image: $wall-torch-3, $wall-3;
+                        }
+                    }
+
+                    .item-boss-0,
+                    .item-enemy-0,
+                    .item-enemy-1,
+                    .item-enemy-2,
+                    .item-enemy-3,
+                    .item-enemy-4,
+                    .item-enemy-5,
+                    .item-enemy-6,
+                    .item-enemy-7,
+                    .item-enemy-8,
+                    .item-enemy-9,
+                    .item-armor-1,
+                    .item-armor-2,
+                    .item-armor-3,
+                    .item-armor-4,
+                    .item-armor-5,
+                    .item-weapon-1,
+                    .item-weapon-2,
+                    .item-weapon-3,
+                    .item-weapon-4,
+                    .item-weapon-5,
+                    .item-weapon-6,
+                    .item-weapon-7,
+                    .item-weapon-8,
+                    .item-weapon-9,
+                    .item-food-0,
+                    .item-food-1,
+                    .item-food-2,
+                    .item-food-3,
+                    .item-food-4 {
+                        height: 32px;
+                        width: 32px;
+                    }
+
+                    .item-boss-0 { background-image: $boss; }
+                    .item-enemy-0 { background-image: $item-enemy-0; }
+                    .item-enemy-1 { background-image: $item-enemy-1; }
+                    .item-enemy-2 { background-image: $item-enemy-2; }
+                    .item-enemy-3 { background-image: $item-enemy-3; }
+                    .item-enemy-4 { background-image: $item-enemy-4; }
+                    .item-enemy-5 { background-image: $item-enemy-5; }
+                    .item-enemy-6 { background-image: $item-enemy-6; }
+                    .item-enemy-7 { background-image: $item-enemy-7; }
+                    .item-enemy-8 { background-image: $item-enemy-8; }
+                    .item-enemy-9 { background-image: $item-enemy-9; }
+                    .item-armor-1 { background-image: $item-armor-1; }
+                    .item-armor-2 { background-image: $item-armor-2; }
+                    .item-armor-3 { background-image: $item-armor-3; }
+                    .item-armor-4 { background-image: $item-armor-4; }
+                    .item-armor-5 { background-image: $item-armor-5; }
+                    .item-weapon-1 { background-image: $item-weapon-1; }
+                    .item-weapon-2 { background-image: $item-weapon-2; }
+                    .item-weapon-3 { background-image: $item-weapon-3; }
+                    .item-weapon-4 { background-image: $item-weapon-4; }
+                    .item-weapon-5 { background-image: $item-weapon-5; }
+                    .item-weapon-6 { background-image: $item-weapon-6; }
+                    .item-weapon-7 { background-image: $item-weapon-7; }
+                    .item-weapon-8 { background-image: $item-weapon-8; }
+                    .item-weapon-9 { background-image: $item-weapon-9; }
+                    .item-food-0 { background-image: $item-food-0; }
+                    .item-food-1 { background-image: $item-food-1; }
+                    .item-food-2 { background-image: $item-food-2; }
+                    .item-food-3 { background-image: $item-food-3; }
+                    .item-food-4 { background-image: $item-food-4; }
+                }
+            }
+        }
+    }
+}
