@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+    head
+        title Eric Rolfe's Portfolio - D3 Global Data Map Project
+        link(href="/global-data/css/style.css", rel="stylesheet")
+    body
+        h2 Meteorite Strikes
+        #map-wrapper
+        .tooltip
+            p
+                strong Name:&nbsp;
+                span#strikeName
+            p
+                strong Year:&nbsp;
+                span#strikeYear
+            p
+                strong Class:&nbsp;
+                span#strikeClass
+            p
+                strong Mass:&nbsp;
+                span#strikeMass
+            p
+                strong Coordinates:&nbsp;
+                span#strikeCoordinates
+    script(src="//d3js.org/d3.v3.min.js")
+    script(src="//d3js.org/topojson.v1.min.js")
+    script(src="/global-data/js/global-data.js")

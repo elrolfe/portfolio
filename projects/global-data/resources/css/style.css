@@ -1,0 +1,22 @@
+body {
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.land {
+  fill: #d7c7ad; }
+
+.water {
+  fill: #adadc7; }
+
+.impact {
+  fill-opacity: 0.75; }
+  .impact:hover {
+    stroke: #333;
+    stroke-width: 2px; }
+
+.tooltip {
+  opacity: 0; }
+  .tooltip p {
+    margin: 0; }
+    .tooltip p:first-child {
+      margin-top: 10px; }
