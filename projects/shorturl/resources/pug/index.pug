@@ -3,21 +3,23 @@ html(lang="en")
     head
         title Eric Rolfe's Portfolio - URL Shortener Microservice
         link(rel="stylesheet", href="/shorturl/css/style.css")
-    h1
-        a(href="http://freecodecamp.com") FreeCodeCamp
-        |  API Project: URL Shortener Microservice
-    p User Stories:
-    ol
-        li I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
-        li If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.
-        li When I visit that shortened URL, it will redirect me to my original link.
-    h2 Example Creation Useage:
-    code #{protocol}://#{host}#{base}/new/https://www.google.com
-    br
-    code #{protocol}://#{host}#{base}/new/https://www.freecodecamp.com
-    h2 Example Creation Response:
-    code { "original_url":"https://www.freecodecamp.com", "short_url":"#{protocol}://#{host}#{base}/3BnD6" }
-    h2 Useage:
-    p Once the shortened url has been created, going to <code class="inline">#{protocol}://#{host}#{base}/3BnD6</code> will redirect to <code class="inline">https://www.freecodecamp.com</code>
-    h2 Get All Shortened URLs
-    p To get all of the shortened URLs stored on the system, use <code class="inline">#{protocol}://#{host}#{base}/all</code>.
+    body
+        .wrapper
+            h1
+                a(href="http://freecodecamp.com") FreeCodeCamp
+                |  API Project: URL Shortener Microservice
+            p User Stories:
+            ol
+                li I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
+                li If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.
+                li When I visit that shortened URL, it will redirect me to my original link.
+            h2 Example Creation Useage:
+            code #{protocol}://#{host}#{base}/new/https://www.google.com
+            br
+            code #{protocol}://#{host}#{base}/new/https://www.freecodecamp.com
+            h2 Example Creation Response:
+            code { "original_url":"https://www.freecodecamp.com", "short_url":"#{protocol}://#{host}#{base}/3BnD6" }
+            h2 Useage:
+            p Once the shortened url has been created, going to <code class="inline">#{protocol}://#{host}#{base}/3BnD6</code> will redirect to <code class="inline">https://www.freecodecamp.com</code>
+            h2 Get All Shortened URLs
+            p To get all of the shortened URLs stored on the system, use <code class="inline">#{protocol}://#{host}#{base}/all</code>.

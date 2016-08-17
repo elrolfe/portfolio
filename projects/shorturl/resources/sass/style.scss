@@ -1,6 +1,13 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
 
+.wrapper {
+    display: inline-block;
+    text-align: left;
+    width: 85vw;
+    
     a {
         color: #000;
         font-style: italic;

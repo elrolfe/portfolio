@@ -6,7 +6,7 @@ module.exports = function(app) {
             res.render("index", {
                 protocol: req.headers["x-forwarded-proto"],
                 host: req.headers.host,
-                base: req.headers.baseUrl
+                base: req.baseUrl
             });
         });
         
