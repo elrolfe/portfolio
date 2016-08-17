@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    head
+        title Eric Rolfe's Portfolio - Request Header Parser Microservice
+        link(href="/rhp/css/style.css", rel="stylesheet")
+    body
+        .wrapper
+            h1
+                a(href="http://freecodecamp.com") FreeCodeCamp
+                |  API Project: Request Header Parser Microservice
+            p
+                strong User Story:
+                |   I can get the IP address, language and operating system for my browser
+            h2 Example usage:
+            code #{protocol}://#{host}#{baseUrl}/api
+            h2 Example output:
+            code 
+                | { "ipaddress": "127.0.0.1", "language": "en-US", "software": "Windows NT 6.1; WOW64" }
