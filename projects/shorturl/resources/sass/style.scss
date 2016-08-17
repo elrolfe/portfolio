@@ -1,0 +1,23 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    a {
+        color: #000;
+        font-style: italic;
+        text-decoration: none;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
+    code {
+        background-color: #ffeaea;
+        color: #aa0000;
+        margin-left: 40px;
+        
+        &.inline {
+            margin-left: 0;
+        }
+    }
+}
