@@ -1,0 +1,11 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center; }
+
+.wrapper {
+  display: inline-block;
+  text-align: left; }
+  .wrapper code {
+    margin-left: 40px;
+    background-color: #ffeaea;
+    color: #cc0000; }
