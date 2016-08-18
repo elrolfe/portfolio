@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        title Eric Rolfe's Portfolio - Image Search Abstraction API
+        link(rel="stylesheet", href="/image-search/css/style.css")
+    body
+        .wrapper
+            h1
+                a(href="https://www.freecodecamp.com") FreeCodeCamp.com
+                |  - Image Search Abstraction API
+            hr
+            h2 User Stories:
+            ol
+                li I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
+                li I can paginate through the responses by adding a <code>?offset=2</code> parameter to the URL.
+                li I can get a list of the most recently submitted search strings.
+            h2 Useage Examples
+            dl
+                dt Search for "Grumpy Cat" (User Story 1):
+                dd <code>#{protocol}://#{host}#{base}/api/search/Grumpy%20Cat</code>
+                dt View the third page of a search for "Mountains" (User Story 2): 
+                dd <code>https://mysterious-brook-37612.herokuapp.com/api/search/Mountains?offset=3</code>
+                dt View the most recently submitted searches (User Story 3):
+                dd <code>https://mysterious-brook-37612.herokuapp.com/api/recent</code>
+            h2 Result Examples
+            dl
+                dt Search Results (User Stories 1 &amp; 2):
+                dd <blockquote><code>{<br><span class="indent-1">"totalResults":"23",</span><br><span class="indent-1">"currentPage":"2",</span><br><span class="indent-1">"images":[</span><br><span class="indent-2">{</span><br><span class="indent-3">"image":"https://www.blah.com/xxx",</span><br><span class="indent-3">"page":"https://www.blah.com/page/xxx",</span><br><span class="indent-3">"alt_text":"Alt Text"</span><br><span class="indent-2">},</span><br><span class="indent-2">{</span><br><span class="indent-3">"image":"https://www.blah.com/xxx",</span><br><span class="indent-3">"page":"https://www.blah.com/page/xxx",</span><br><span class="indent-3">"alt_text":"Alt Text"</span><br><span class="indent-2">},</span><br><span class="indent-2">{</span><br><span class="indent-3">"image":"https://www.blah.com/xxx",</span><br><span class="indent-3">"page":"https://www.blah.com/page/xxx",</span><br><span class="indent-3">"alt_text":"Alt Text"</span><br><span class="indent-2">}</span><br><span class="indent-1">]</span><br>}</code></blockquote>
+                dt Recent Searches (User Story 3):
+                dd <blockquote><code>[<br><span class="indent-1">{</span><br><span class="indent-2">"searchTerm":"Funny Cats",</span><br><span class="indent-2">"searchTime":"2016-07-15T19:40:24.961Z"<span class="indent-1"></span><br><span class="indent-1">},</span><br><span class="indent-1">{</span><br><span class="indent-2">"searchTerm":"Grumpy Cats",</span><br><span class="indent-2">"searchTime":"2016-07-15T19:38:16.437Z"</span><br><span class="indent-1">}</span><br>]</code></blockquote>
+                
