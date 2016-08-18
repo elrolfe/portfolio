@@ -14,6 +14,8 @@ try {
     return -1;
 }
 
+var modulesLoaded = 0;
+
 files.forEach((file) => {
     var path = process.cwd() + "/projects/" + file;
     if (fs.statSync(path).isDirectory()) {
@@ -25,12 +27,14 @@ files.forEach((file) => {
 
         try {
             app.use("/" + file, require(path + "/subapp.js"));
+            modulesLoaded++;
         } catch (e) {
             console.log("Could not load the " + file + " module!\n    " + e.message);
         }
-        console.log("Loaded " + file + " on path '/" + file + "'");
     }
 });
+
+console.log(modulesLoaded + " modules successfully loaded");
 
 app.set("views", process.cwd() + "/resources/pug");
 app.set("view engine", "pug");
