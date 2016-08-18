@@ -1,0 +1,28 @@
+extends ./base.pug
+
+block pageTitle
+    title Eric Rolfe's Portfolio - Vote! - Profile
+
+block pageContent
+    .container
+        .row
+            .col-sm-6.col-sm-offset-3.col-xs-12.col-xs-offset-0
+                h4.text-center
+                    - if (user.facebook !== "")
+                        | Registered Facebook User
+                    - else if (user.twitter !== "")
+                        | Registered Twitter User
+                    - else
+                        | Registered Local User
+                .form-group
+                    label(for="#displayName") Current Display Name
+                    input.form-control#displayName(type="text", name="displayName", value=user.displayName)
+        h2.text-center My Polls
+        .row.infinite-scroll
+            .col-sm-4.col-xs-12#poll-col-1
+            .col-sm-4.col-xs-12#poll-col-2
+            .col-sm-4.col-xs-12#poll-col-3
+        p.text-center.loading
+            img(src="/vote/img/loading.gif", width="32")
+            |  Loading...
+        input#user-id(type="hidden", value=user._id)

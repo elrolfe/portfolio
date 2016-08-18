@@ -1,0 +1,45 @@
+extends ./base.pug
+
+block pageTitle
+    title Eric Rolfe's Portfolio - Vote! - Edit Poll
+    
+block pageContent
+    .container
+        h2.text-center= poll.question
+        p.text-center.poll-created Created on #{poll.created}
+        p.text-center.remove-poll: a(href="/vote/polls/" + poll._id + "/remove?p=edit", onclick="return confirm('Are you sure you want to delete this poll?');") Remove this poll
+        input#editID(type="hidden", value=poll._id)
+        .row
+            .col-sm-6.col-xs-12
+                .panel.panel-default
+                    .panel-heading
+                        h4.panel-title Current Answers&nbsp;
+                            span.loading
+                                img(src="/vote/img/loading.gif", width="17")
+                                |  Loading...
+                    .panel-body
+                        .answers-wrapper
+            .col-sm-6.col-xs-12
+                .panel.panel-default
+                    .panel-heading
+                        h4.panel-title Add Answers
+                    .panel-body
+                        .form-group
+                            label(for="#newAnswers") Enter new answers for the poll, one answer per line
+                            textarea.form-control#newAnswers(name="newAnswers", placeholder="Enter New Answers Here")
+                        button.btn.btn-default#sendNewAnswers Submit
+                        span.updating
+                            | &nbsp;
+                            img(src="/vote/img/loading.gif", width="32")
+                            |  Updating...
+                .panel.panel-default
+                    .panel-heading
+                        h4.panel-title Poll Results&nbsp;
+                            span.loading
+                                img(src="/vote/img/loading.gif", width="17")
+                                |  Loading...
+                    .panel-body
+                        .results-wrapper
+
+block pageScripts
+    script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js")

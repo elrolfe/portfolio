@@ -1,0 +1,28 @@
+extends ./base.pug
+
+block pageTitle
+    title Eric Rolfe's Portfolio - Vote! - Register
+    
+block pageContent
+    .container
+        h2.text-center Sign Up for an Account
+        p.text-center Please fill in the information below to register.
+        .col-sm-4.col-sm-offset-4.col-xs-12.col-xs-offset-0
+            form(method="post", action="/vote/register")
+                .form-group
+                    label(for="#vote-username") Username&nbsp;&nbsp;
+                    span.updating
+                        img(src="/vote/img/loading.gif", width="17")
+                    span#username-error
+                    input.form-control#vote-username(type="text", name="username")
+                .form-group
+                    label(for="#vote-password") Password <span id="password-error"></span>
+                    input.form-control#vote-password(type="password", name="password")
+                .form-group
+                    label(for="#vote-verify") Verify Password
+                    input.form-control#vote-verify(type="password")
+                .form-group
+                    label(for="#vote-display-name") Display Name
+                    input.form-control#vote-display-name(type="text", name="displayName")
+                p.text-center
+                    button.btn.btn-default#register-btn(type="submit", disabled) Submit

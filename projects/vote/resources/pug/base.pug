@@ -1,0 +1,62 @@
+doctype html
+html(lang="en")
+    head
+        block pageTitle
+            title Eric Rolfe's Portfolio - Vote! - Pug Template
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
+        link(rel="stylesheet", href="/vote/css/style.css")
+        block pageStyles
+    body
+        block SocialShareSDK
+        nav.navbar.navbar-default
+            .container
+                .navbar-header
+                    button.navbar-toggle.collapsed(type="button", data-toggle="collapse" data-target="#main-nav")
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a(href="/vote")
+                        img(src="/vote/img/logo.png", height="45px", alt="Logo")
+                .collapse.navbar-collapse#main-nav
+                    ul.nav.navbar-nav
+                        block allPollsActive
+                            li: a(href="/vote/polls") All Polls
+                        block top10Active
+                            li: a(href="/vote/polls/top") Top 10
+                        li: a(href="/vote/polls/random") Random Poll
+                    form.navbar-form.navbar-left(action="/vote/polls/search", method="get", role="search")
+                        .form-group
+                            input.form-control(type="text" placeholder="Search" name="q")
+                        button.btn.btn-default(type="submit") Submit
+                    ul.nav.navbar-nav.navbar-right
+                        if user
+                            li: a(href="/vote/user/" + user._id) Hello, #{user.displayName}
+                            li: a(href="#new-poll-dialog") New Poll
+                            li: a(href="/vote/logout") Logout
+                        else
+                            li: a(href="#login-dialog") Login
+                        
+        - if (user)
+            include ./newpoll.pug
+        - else
+            include ./login.pug
+            
+        - if (message)
+            .container
+                div(class="alert alert-dismissable " + message.type)
+                    button.close(type="button", data-dismiss="alert") &times;
+                    p= message.message
+                
+        block pageContent
+            .container
+                h1.text-center Pug Template File
+                p This template provides the necessary includes for Bootstrap, and the app style sheet file has two block sections:
+                ul
+                    li pageTitle - Sets the title for the page in the &lt;head&gt; section of the page
+                    li pageContent - Sets the body content for the page.
+     
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
+    script(src="/vote/js/polls.js")
+    block pageScripts

@@ -19,12 +19,19 @@
   "homepage": "https://github.com/elrolfe/portfolio#readme",
   "dependencies": {
     "babel-middleware": "^0.3.4",
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "express-session": "^1.14.0",
     "flickrapi": "^0.5.1",
     "hashids": "^1.1.0",
     "mongoose": "^4.5.9",
     "mongoose-auto-increment": "^5.0.1",
     "node-sass-middleware": "^0.9.8",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "passport-twitter": "^1.0.4",
     "pug": "^2.0.0-beta5"
   }
 }

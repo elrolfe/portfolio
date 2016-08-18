@@ -1,0 +1,13 @@
+.vote-modal-dialog#new-poll-dialog
+    div
+        a.vote-modal-close(href="#", title="Close") X
+        h2.text-center Create a New Poll
+        form(method="post", action="/vote/polls/new")
+            .form-group
+                label(for="#question") What question is on your mind?
+                textarea.form-control#question(name="question", placeholder="Type your question here")
+            .form-group
+                label(for="#answers") Enter the possible answers, one answer per line:
+                textarea.form-control#answers(name="answers", placeholder="Enter answers here")
+            p.text-center
+                button.btn.btn-default(type="submit") Submit

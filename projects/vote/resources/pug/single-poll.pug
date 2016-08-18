@@ -1,0 +1,54 @@
+extends ./base.pug
+
+block pageTitle
+    title Eric Rolfe's Portfolio - Vote! - Poll by #{poll.author}
+    
+block SocialShareSDK
+    #fb-root
+        script.
+            (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1559910044316255";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+    script.
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            
+            return t;
+        }(document, "script", "twitter-wjs"));
+    
+block pageContent
+    .container
+        p.text-center On #{poll.created.toDateString()}, #{poll.author} wanted to know:
+        h2.text-center= poll.question
+        - if (user && user._id == poll.user)
+            p.text-center.edit-poll: a(href="/vote/polls/" + poll._id + "/edit") Edit Poll
+        .row
+            .col-sm-6.col-xs-12
+                h4 Vote
+                input#pollID(type="hidden", name="pollID", value=poll._id)
+                .vote-wrapper
+                    img(src="/vote/img/loading.gif")
+                    h4 Loading...
+            .col-sm-6.col-xs-12
+                h4 Results
+                .results-wrapper
+                    img(src="/vote/img/loading.gif")
+                    h4 Loading...
+        h4.text-center Share this poll on Social Media
+        .row
+            .col-xs-12.col-sm-1.col-sm-offset-5.col-xs-offset-0
+                .fb-share-button(data-href=process.env.VOTE_APP_URL + "/polls/" + poll._id, data-layout="button" data-size="large" data-mobile-iframe="true")
+                    a.fb-xfbml-parse-ignore(target="_blank", href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffcc-vote-elrolfe305.c9users.io%2Fpolls%2F" + poll._id + "&amp;src=sdkpreparse") Share
+            .col-xs-12.col-sm-1
+                a.twitter-share-button(href="https://twitter.com/intent/tweet?text=" + encodeURI(poll.question), data-size="large") Tweet
+    
+block pageScripts
+    script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js")

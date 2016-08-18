@@ -1,0 +1,25 @@
+.vote-modal-dialog#login-dialog
+    div
+        a.vote-modal-close(href="#", title="Close") X
+        h2.text-center Login
+        h4.text-center Sign in with Social Media
+        p.text-center
+            a(href="/vote/auth/facebook")
+                button.btn.btn-primary.social-media-btn
+                    img(src="/vote/img/fb-logo-btn.png")
+                    |  Facebook
+            | &nbsp;
+            a(href="/vote/auth/twitter")
+                button.btn.btn-info.social-media-btn
+                    img(src="/vote/img/twitter-logo-btn.png")
+                    |  Twitter
+        h4.text-center.line-rule or
+        form(method="post", action="/vote/login")
+            .form-group
+                label(for="#username") Username:
+                input.form-control#username(type="text", name="username", placeholder="Enter Username")
+            .form-group
+                label(for="#password") Password:
+                input.form-control#password(type="password", name="password", placeholder="Enter Password")
+            p.text-center: button.btn.btn-default(type="submit") Login
+        p.text-center: a(href="/vote/register") Sign up for an account
