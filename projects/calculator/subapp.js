@@ -12,10 +12,11 @@ subapp.set("views", baseDir + "/resources/pug");
 subapp.set("view engine", "pug");
 
 subapp.use(sass({
-    src: baseDir + "/resources/sass",
-    dest: baseDir + "/resources/css",
+    root: baseDir + "/resources",
+    src: "/sass",
+    dest: "/css",
     prefix: "/css",
-    output: "compressed"
+    outputStyle: "compressed"
 }));
 
 subapp.use("/css", express.static(baseDir + "/resources/css"));

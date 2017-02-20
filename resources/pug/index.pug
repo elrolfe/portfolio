@@ -1,0 +1,468 @@
+doctype html
+html(lang="en")
+    head
+        title Eric Rolfe's Portfolio
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Open+Sans", type="text/css")
+        link(rel="stylesheet", href="/css/reset.css", type="text/css")
+        link(rel="stylesheet", href="/css/style.css", type="text/css")
+    body
+        nav#navbar
+            p#name Eric Rolfe
+            ul
+                li: a(href="#welcome-section") Welcome
+                li: a(href="#projects-section") Projects
+                li: a(href="#contact-section") Contact
+        main
+            section#welcome-section
+                #profile-image
+                    img(src="/img/profile.jpg", alt="Profile Photo")
+                #welcome-text
+                    h1 Welcome to my Portfolio
+                    p I am a web developer who loves to code, whether for work, learning, or just having fun.  Feel free to browse through my projects.
+            section#projects-section
+                h2 Projects
+                h3 Work Projects
+                .projects
+                    .project-tile
+                        p.project-title Abyss Dive Center Website
+                        figure.screenshot
+                            img(src="/img/abyss_website.jpg", alt="Screenshot")
+                            figcaption Abyss Dive Center Website
+                            .buttons
+                        p. 
+                            This WordPress theme was developed to allow Abyss Dive Center to present information 
+                            "buckets" on their main page.  Custom fields were designed for the theme to allow for a 
+                            page to be designated as a "bucket" page, as well as set the display order and the bucket 
+                            title if different than the page title.  Additionally, plugins were created to easily 
+                            define and display staff members and area points of interest.
+                        p.
+                            The new site design was deployed to live production in June of 2016.
+                    .project-tile
+                        p.project-title Real Estate One Ad Management System
+                        figure.screenshot
+                            img(src="/img/REO_Ad_Manager_Site.jpg", alt="Screenshot")
+                            figcaption Real Estate One Ad Management System
+                            .buttons
+                        p.
+                            The Real Estate One Ad Management System is an admin plugin for WordPress.  It allows
+                            Realtors from the Washtenaw County Real Estate One offices to enter and update their
+                            current listings and contact information.  The system manager can define advertising
+                            layouts and elements, and assign various listings to the layout.  When the ad is ready,
+                            the system generates an Adobe InDesign script file that will create the ad document.
+                            The script file and all necessary pictures for the ad are added to a zip file which can
+                            then be downloaded from the site.
+                        p.
+                            The plugin defined multiple database tables to be added to WordPress.  Images uploaded to
+                            the system are stored in database tables, and referenced as needed.  The system uses AJAX
+                            calls to save data as it is entered, eliminating the need for a submit button, and
+                            minimizing data loss if an agent were to click the back button without saving.
+                        p.
+                            Planned additions to the system include adding functionality to calculate billing information
+                            for the agents ads, drag-and-drop photo uploads, and a visual layout design feature.
+                h3 Free Code Camp Curriculum - Front End Development Projects
+                .projects
+                    .project-tile
+                        p.project-title Random Quote Machine
+                        figure.screenshot
+                            img(src="/img/random_quote.jpg", alt="Screenshot")
+                            figcaption Random Quote Machine
+                            .buttons
+                                a(href="/random-quote") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to connect to an external API through JavaScript to retrieve 
+                            and display a random quote. In addition, the following User Stories were required to be
+                            implemented in the project:
+                        ol
+                            li I can click a button to show me a new random quote.
+                            li I can press a button to tweet out a quote.
+                    .project-tile
+                        p.project-title Show the Local Weather
+                        figure.screenshot
+                            img(src="img/weather.jpg", alt-"Screenshot")
+                            figcaption Local Weather App
+                            .buttons
+                                a(href="/weather") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to connect to an external API through JavaScript to display
+                            local weather information.  As part of this project, the following User Stories were
+                            required to be implemented:
+                        ol
+                            li I can see the weather in my current location. (This was determined based on the user's IP address.)
+                            li I can see a different icon or background image (e.g. snowy mountain, hot desert) depending on the weather.
+                            li I can push a button to toggle between Fahrenheit and Celsius.
+                    .project-tile
+                        p.project-title Wikipedia Viewer
+                        figure.screenshot
+                            img(src="/img/wiki_viewer.jpg", alt="Screenshot")
+                            figcaption Wikipedia Viewer
+                            .buttons
+                                a(href="/wiki-search") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to connect to the Wikipedia API via JavaScript in order to
+                            fulfill the following User Stories:
+                        ol
+                            li I can search Wikipedia entries in a search box and see the resulting Wikipedia entries.
+                            li I can click a button to see a random Wikipedia entry.
+                    .project-tile
+                        p.project-title Twitch.tv JSON API
+                        figure.screenshot
+                            img(src="/img/twitch.jpg", alt="Screenshot")
+                            figcaption Twitch.tv JSON API
+                            .buttons
+                                a(href="/twitch") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to connect to the Twitch.tv JSON API to view the status of
+                            an array of Twitch.tv users that you want to follow.  The following User Stories were also
+                            required:
+                        ol
+                            li I can see whether Free Code Camp is currently streaming on Twitch.tv.
+                            li I can click the status output and be sent directly to the Free Code Camp's Twitch.tv channel.
+                            li If a Twitch.tv user is currently streaming, I can see additional details about what they are streaming.
+                            li I will see a placeholder notifiction if a streamer has closed their Twitch account (or the account never existed).
+                        p.
+                            Due to a change in their conditions on API usage, Twitch.tv now requires an API key.  Free
+                            Code Camp built a workaround API that uses the same endpoints as the Twitch.tv API, giving
+                            access to the Twitch.tv account information without needing to sign up for an API key.
+                            This project utilizes the Free Code Camp workaround API.
+                    .project-tile
+                        p.project-title JavaScript Calculator
+                        figure.screenshot
+                            img(src="/img/calculator.jpg", alt="Screenshot")
+                            figcaption JavaScript Calculator
+                            .buttons
+                                a(href="/calculator") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to build a functional JavaScript Calculator that fullfilled
+                            the following User Stories:
+                        ol
+                            li I can add, subtract, multiply and divide two numbers.
+                            li I can clear the input field with a clear button.
+                            li I can keep chaining mathematical operations together until I hit the equal button, and the calculator will tell me the correct output.
+                    .project-tile
+                        p.project-title Pomodoro Clock
+                        figure.screenshot
+                            img(src="/img/pomodoro.jpg", alt="Screenshot")
+                            figcaption Pomodoro Clock
+                            .buttons
+                                a(href="/pomodoro") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to complete a Pomodoro Clock, and to meet the following
+                            User Stories:
+                        ol
+                            li I can start a 25 minute pomodoro, and the timer will go off once 25 minutes has elapsed.
+                            li I can reset the clock for my next pomodoro.
+                            li I can customize the length of each pomodoro.
+                    .project-tile
+                        p.project-title Tic-Tac-Toe Game
+                        figure.screenshot
+                            img(src="/img/tic-tac-toe.jpg", alt="Screenshot")
+                            figcaption Tic-Tac-Toe Game
+                            .buttons
+                                a(href="/tic-tac-toe") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to create a Tic-Tac-Toe game that meets the following
+                            User Stories:
+                        ol
+                            li I can play a game of Tic-Tac-Toe with the computer.
+                            li My game will reset as soon as it's over so I can play again.
+                            li I can choose whether I want to play as X or O.
+                    .project-tile
+                        p.project-title Simon Game
+                        figure.screenshot
+                            img(src="/img/simon.jpg", alt="Screenshot")
+                            figcaption Simon Game
+                            .buttons
+                                a(href="/simon") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to create a Simon game.  The following User Stories
+                            were required:
+                        ol
+                            li I am presented with a random series of button presses.
+                            li Each time I input a series of button presses correctly, I see the same series of button presses but with an additional step.
+                            li I hear a sound that corresponds to each button both when the series of button presses plays, and when I personally press a button.
+                            li If I press the wrong button, I am notified that I have done so, and that series of button presses starts again to remind me of the pattern so I can try again.
+                            li I can see how many steps are in the current series of button presses.
+                            li If I want to restart, I can hit a button to do so, and the game will return to a single step.
+                            li I can play in strict mode where if I get a button press wrong, it notifies me that I have done so, and the game restarts at a new random series of button presses.
+                            li I can win the game by getting a series of 20 steps correct. I am notified of my victory, then the game starts over.
+                h3 Free Code Camp Curriculum - React Projects
+                .projects
+                    .project-tile
+                        p.project-title Markdown Previewer
+                        figure.screenshot
+                            img(src="/img/markdown.jpg", alt="Screenshot")
+                            figcaption Markdown Previewer
+                            .buttons
+                                a(href="/markdown") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the React JavaScript framework to create a markdown
+                            previewer that satisfies the following User Stories:
+                        ol
+                            li I can type GitHub-flavored Markdown into a text area.
+                            li I can see a preview of the output of my markdown that is updated as I type.
+                    .project-tile
+                        p.project-title Camper Leaderboard
+                        figure.screenshot
+                            img(src="/img/leaderboard.jpg", alt="Screenshot")
+                            figcaption Camper Leaderboard
+                            .buttons
+                                a(href="/leaderboard") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the React JavaScript framework to connect to the 
+                            Free Code Camp leaderboard API to display the leaders in "brownie points".  The following
+                            User Stories were required:
+                        ol
+                            li I can see a table of the Free Code Camp campers who've earned the most brownie points in the past 30 days.
+                            li I can see how may brownie points they've earned in the past 30 days, and how many they've earned total.
+                            li I can toggle between sorting the list by how many brownie points they've earned in the past 30 days and by how many brownie points they've earned total.
+                    .project-tile
+                        p.project-title Recipe Box
+                        figure.screenshot
+                            img(src="/img/recipe-box.jpg", alt="Screenshot")
+                            figcaption Recipe Box
+                            .buttons
+                                a(href="/recipe-box") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the React JavaScript framework to create a recipe box
+                            that satisfies the following User Stories:
+                        ol
+                            li I can create recipes that have names and ingredients
+                            li I can see an index view where the names of all the recipes are visible.
+                            li I can click into any of those recipes to view it.
+                            li I can edit these recipes.
+                            li I can delete these recipes.
+                            li All new recipes I add are saved in my browser's local storage. If I refresh the page, these recipes will still be there.
+                    .project-tile
+                        p.project-title The Game of Life
+                        figure.screenshot
+                            img(src="/img/game-of-life.jpg", alt="Screenshot")
+                            figcaption Conway's Game of Life
+                            .buttons
+                                a(href="/game-of-life") Demo
+                                a(href="#") Code
+                        p. 
+                            The goal of this project was to use the React JavaScript framework to program Conway's
+                            "Game of Life."  The following User Stories were required:
+                        ol
+                            li When I first arrive at the game, it will randomly generate a board and start playing.
+                            li I can start and stop the board.
+                            li I can set up the board.
+                            li I can clear the board.
+                            li When I press start, the game will play out.
+                            li Each time the board changes, I can see how many generations have gone by.
+                    .project-tile
+                        p.project-title Rougelike Dungeon Crawler Game
+                        figure.screenshot
+                            img(src="/img/dungeon.jpg", alt="Screenshot")
+                            figcaption Rougelike Dungeon Crawler Game
+                            .buttons
+                                a(href="/dungeon") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the React JavaScript framework to create after
+                            Rougelike Dungeon Crawler game.  The following User Stories were required:
+                        ol
+                            li I have health, a level, and a weapon. I can pick up a better weapon. I can pick up health items.
+                            li All the items and enemies on the map are arranged at random.
+                            li I can move throughout a map, discovering items.
+                            li I can move anywhere within the map's boundaries, but I can't move through an enemy until I've beaten it.
+                            li Much of the map is hidden. When I take a step, all spaces that are within a certain number of spaces from me are revealed.
+                            li When I beat an enemy, the enemy goes away and I get XP, which eventually increases my level.
+                            li When I fight an enemy, we take turns damaging each other until one of us loses. I do damage based off of my level and my weapon. The enemy does damage based off of its level. Damage is somewhat random within a range.
+                            li When I find and beat the boss, I win.
+                            li The game should be challenging, but theoretically winnable.
+                h3 Free Code Camp Curriculum - Data Visualization Projects
+                .projects
+                    .project-tile
+                        p.project-title Bar Chart
+                        figure.screenshot
+                            img(src="/img/bar-chart.jpg", alt="Screenshot")
+                            figcaption Bar Chart
+                            .buttons
+                                a(href="/bar-chart") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the D3 JavaScript framework to graph data in a 
+                            bar chart.  The following User Stories were required:
+                        ol
+                            li I can see US Gross Domestic Product by quarter, over time.
+                            li I can mouse over a bar and see a tooltip with the GDP amount and exact year and month that bar represents.
+                    .project-tile
+                        p.project-title Scatter Plot
+                        figure.screenshot
+                            img(src="/img/scatter-plot.jpg", alt="Screenshot")
+                            figcaption Scatter Plot
+                            .buttons
+                                a(href="/scatter-plot") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the D3 JavaScript framework to graph data in a 
+                            scatter plot, with the following required User Stories:
+                        ol
+                            li I can see performance time visualized in a scatterplot graph.
+                            li I can mouse over a plot to see a tooltip with additional details.
+                    .project-tile
+                        p.project-title Heat Map
+                        figure.screenshot
+                            img(src="/img/heatmap.jpg", alt="Screenshot")
+                            figcaption Heat Map
+                            .buttons
+                                a(href="/heatmap") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the D3 JavaScript framework to graph data in a
+                            heat map, implementing the following User Stories:
+                        ol
+                            li I can view a heat map with data represented both on the Y and X axis.
+                            li Each cell is colored based its relationship to other data.
+                            li I can mouse over a cell in the heat map to get more exact information.
+                    .project-tile
+                        p.project-title Force Directed Graph
+                        figure.screenshot
+                            img(src="/img/forcemap.jpg", alt="Screenshot")
+                            figcaption Force Directed Graph
+                            .buttons
+                                a(href="/forcemap") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the D3 JavaScript framework to show National
+                            Contiguity via a force directed graph.  The following User Stories were required:
+                        ol
+                            li I can see a Force-directed Graph that shows which countries share borders.
+                            li I can see each country's flag on its node.
+                    .project-tile
+                        p.project-title Data Across the Globe
+                        figure.screenshot
+                            img(src="/img/global-data.jpg", alt="Screenshot")
+                            figcaption Data Across the Globe
+                            .buttons
+                                a(href="/global-data") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use the D3 JavaScript framework to plot data
+                            on a world map, with the following User Stories:
+                        ol
+                            li I can see where all Meteorites landed on a world map.
+                            li I can tell the relative size of the meteorite, just by looking at the way it's represented on the map.
+                            li I can mouse over the meteorite's data point for additional data.
+                h3 Free Code Camp Curriculum - API Projects
+                .projects
+                    .project-tile
+                        p.project-title Timestamp Microservice
+                        figure.screenshot
+                            img(src="/img/timestamp.jpg", alt="Screenshot")
+                            figcaption Timestamp Microservice
+                            .buttons
+                                a(href="/timestamp") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use Node.js to create a Timestamp Microservice
+                            API that satisfies the following User Stories:
+                        ol
+                            li I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016).
+                            li If it does, it returns both the Unix timestamp and the natural language form of that date.
+                            li If it does not contain a date or Unix timestamp, it returns null for those properties.
+                    .project-tile
+                        p.project-title Request Header Parser Microservice
+                        figure.screenshot
+                            img(src="/img/rhp.jpg", alt="Screenshot")
+                            figcaption Request Header parser Microservice
+                            .buttons
+                                a(href="/rhp") Demo
+                                a(href="#") Code
+                        p. 
+                            The goal of this project was to use Node.js to create an app that parses the
+                            HTML request header, and satisfies the following User Story:
+                        ol
+                            li I can get the IP address, language and operating system for my browser.
+                    .project-tile
+                        p.project-title URL Shortener Microservice
+                        figure.screenshot
+                            img(src="/img/shorturl.jpg", alt="Screenshot")
+                            figcaption URL Shortener Microservice
+                            .buttons
+                                a(href="/shorturl") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use Node.js and MongoDB to create a URL 
+                            shortener microservice API that conforms to these User Stories:
+                        ol
+                            li I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
+                            li If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.
+                            li When I visit that shortened URL, it will redirect me to my original link.
+                    .project-tile
+                        p.project-title Image Search Abstraction Layer
+                        figure.screenshot
+                            img(src="/img/image-search.jpg", alt="Screenshot")
+                            figcaption Image Search Abstraction Layer
+                            .buttons
+                                a(href="/image-search") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use Node.js to create an image search
+                            abstraction layer API that implements these User Stories:
+                        ol
+                            li I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
+                            li I can paginate through the responses by adding a ?offset=2 parameter to the URL.
+                            li I can get a list of the most recently submitted search strings.
+                    .project-tile
+                        p.project-title File Metadata Microservice
+                        figure.screenshot
+                            img(src="/img/filemeta.jpg", alt="Screenshot")
+                            figcaption File Metadata Microservice
+                            .buttons
+                                a(href="/filemetta") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to use Node.js to create an API
+                            that will return file data based on these User Stories:
+                        ol
+                            li I can submit a FormData object that includes a file upload.
+                            li When I submit something, I will receive the file size in bytes within the JSON response
+                h3 Free Code Camp Curriculum - Dynamic Web Application Projects
+                .projects
+                    .project-tile
+                        p.project-title Voting App
+                        figure.screenshot
+                            img(src="/img/vote.jpg", alt="Screenshot")
+                            figcaption Voting App
+                            .buttons
+                                a(href="/vote") Demo
+                                a(href="#") Code
+                        p.
+                            The goal of this project was to full stack voting app that
+                            satisfies the following User Stories:
+                        ol
+                            li As an authenticated user, I can keep my polls and come back later to access them.
+                            li As an authenticated user, I can share my polls with my friends.
+                            li As an authenticated user, I can see the aggregate results of my polls.
+                            li As an authenticated user, I can delete polls that I decide I don't want anymore.
+                            li As an authenticated user, I can create a poll with any number of possible items.
+                            li As an unauthenticated or authenticated user, I can see and vote on everyone's polls.
+                            li As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.)
+                            li As an authenticated user, if I don't like the options on a poll, I can create a new option.
+            section#contact-section
+                h2 Let's get in touch
+                #social-icons
+                    .social-image-icon
+                        a#profile-link(href="mailto:elrolfe@gmail.com"): img(src="/img/email.png", alt="Email")
+                    .social-image-icon
+                        a#profile-link(href="https://github/elrolfe"): img(src="/img/github.png", alt="GitHub")
+                    .social-image-icon
+                        a#profile-link(href="https://www.freecodecamp.com/elrolfe"): img(src="/img/freecodecamp.png", alt="Free Code Camp")
+                    .social-image-icon
+                        a#profile-link(href="https://www.facebook.com/eric.rolfe2"): img(src="/img/facebook.png", alt="Facebook")
+                    .social-image-icon
+                        a#profile-link(href="https://www.linkedin.com/in/eric-rolfe-527385100"): img(src="/img/linkedin.png", alt="Linked In")
+                    

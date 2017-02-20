@@ -16,7 +16,7 @@ subapp.use(sass({
     src: "/sass",
     dest: "/css",
     prefix: "/css",
-    output: "compressed"
+    outputStyle: "compressed"
 }));
 
 subapp.use("/css", express.static(baseDir + "/resources/css"));

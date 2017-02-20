@@ -1,3 +1,4 @@
 node_modules
 projects/*/resources/css
 data
+.env

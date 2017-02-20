@@ -30,8 +30,9 @@ $(document).ready(function() {
         filterTable();
     });
     
-    var baseURL = "https://api.twitch.tv/kraken/streams/";
-    var callback = "?callback=?";
+    var streamURL = "https://wind-bow.gomix.me/twitch-api/streams/";
+    var channelURL = "https://wind-bow.gomix.me/twitch-api/channels/";
+    var callback = ""; //?callback=?";
     var unknownImage = "/twitch/img/unknown.jpg";
     var statusClass = "";
     var imgLink = "";
@@ -48,30 +49,36 @@ $(document).ready(function() {
     twitchUsers.sort();
     
     for (var i = 0; i < twitchUsers.length; i++) {
-        $("tbody").append("<tr id=\"" + twitchUsers[i] + "\"><td class=\"logo-column\"><img class=\"streamer-logo\" src=\"" + unknownImage + "\"></td><td class=\"info-column\"><div class=\"streamer-info\"><p class=\"name\">" + twitchUsers[i] + "</p><p class=\"stream-data\"></p></div></td><td class=\"status-column\"><p></p></td></tr>");
-        $.getJSON(baseURL + twitchUsers[i] + callback, function(data) {
+        let tUser = twitchUsers[i];
+        $("tbody").append("<tr id=\"" + tUser + "\"><td class=\"logo-column\"><img class=\"streamer-logo\" src=\"" + unknownImage + "\"></td><td class=\"info-column\"><div class=\"streamer-info\"><p class=\"name\">" + twitchUsers[i] + "</p><p class=\"stream-data\"></p></div></td><td class=\"status-column\"><p></p></td></tr>");
+        $.getJSON(channelURL + tUser + callback, function(data) {
             if (data.hasOwnProperty("error")) {
                 var found = data.message.match(/'([^']*)'/);
                 var id = "#" + found[1];
                 $(id).addClass("danger");
                 $(id + " .status-column p").text("Invalid");
-            } else if (data.stream) {
-                var id = "#" + data.stream.channel.name;
-                $(id).addClass("success");
-                $(id + " .streamer-logo").prop("src", data.stream.channel.logo);
-                $(id + " .streamer-info .name").text(data.stream.channel.display_name);
-                $(id + " .stream-data").text(data.stream.game);
-                $(id + " .streamer-info").wrap("<a href=\"https://www.twitch.tv/" + data.stream.channel.name + "\" target=\"_blank\"></a>");
-                $(id + " .status-column p").text("Online");
-            } else if (data._links.channel) {
-                $.getJSON(data._links.channel + "?callback=?", function(data) {
-                    var id = "#" + data.name;
-                    $(id).addClass("active");
-                    $(id + " .streamer-logo").prop("src", data.logo);
-                    $(id + " .streamer-info .name").text(data.display_name);
-                    $(id + " .stream-data").text(data.status);
-                    $(id + " .streamer-info").wrap("<a href=\"https://www.twitch.tv/" + data.name + "\" target=\"_blank\"></a>");
-                    $(id + " .status-column p").text("Offline");
+            } else {
+                $.getJSON(streamURL + tUser + callback, function (streamData) {
+                    console.log(streamURL);
+                    console.log(tUser);
+                    console.log(streamData.stream);
+                   if (streamData.stream) {
+                        var id = "#" + streamData.stream.channel.name;
+                        $(id).addClass("success");
+                        $(id + " .streamer-logo").prop("src", streamData.stream.channel.logo);
+                        $(id + " .streamer-info .name").text(streamData.stream.channel.display_name);
+                        $(id + " .stream-data").text(streamData.stream.game);
+                        $(id + " .streamer-info").wrap("<a href=\"https://www.twitch.tv/" + streamData.stream.channel.name + "\" target=\"_blank\"></a>");
+                        $(id + " .status-column p").text("Online");
+                   } else {
+                        var id = "#" + data.name;
+                        $(id).addClass("active");
+                        $(id + " .streamer-logo").prop("src", data.logo);
+                        $(id + " .streamer-info .name").text(data.display_name);
+                        $(id + " .stream-data").text(data.status);
+                        $(id + " .streamer-info").wrap("<a href=\"https://www.twitch.tv/" + data.name + "\" target=\"_blank\"></a>");
+                        $(id + " .status-column p").text("Offline");
+                   }
                 });
             }
         });
