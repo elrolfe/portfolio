@@ -6,14 +6,14 @@ html(lang="en")
     body
         .wrapper
             h1
-                a(href="http://freecodecamp.com") FreeCodeCamp
+                a(href="https://freecodecamp.com") FreeCodeCamp
                 |  API Project: File Metadata Microservice
             p User Stories:
             ol
                 li I can submit a FormData object that includes a file upload.
                 li When I submit something, I will receive the file size in bytes within the JSON response.
             h2 Example output:
-            code { "filename": "test.doc", size": 145013 }
+            code { "filename": "test.doc", "size": 145013 }
             hr
             form(action="/filemeta", enctype="multipart/form-data", method="POST")
                 input(type="file", name="newFile")

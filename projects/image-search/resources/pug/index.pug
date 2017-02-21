@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang="en")
     head
         title Eric Rolfe's Portfolio - Image Search Abstraction API
         link(rel="stylesheet", href="/image-search/css/style.css")
@@ -17,15 +17,54 @@ html
             h2 Useage Examples
             dl
                 dt Search for "Grumpy Cat" (User Story 1):
-                dd <code>#{protocol}://#{host}#{base}/api/search/Grumpy%20Cat</code>
+                dd
+                    code #{protocol}://#{host}#{base}/api/search/Grumpy%20Cat
                 dt View the third page of a search for "Mountains" (User Story 2): 
-                dd <code>#{protocol}://#{host}#{base}/api/search/Mountains?offset=3</code>
+                dd
+                    code #{protocol}://#{host}#{base}/api/search/Mountains?offset=3
                 dt View the most recently submitted searches (User Story 3):
-                dd <code>#{protocol}://#{host}#{base}/api/recent</code>
+                dd
+                    code #{protocol}://#{host}#{base}/api/recent
             h2 Result Examples
             dl
                 dt Search Results (User Stories 1 &amp; 2):
-                dd <blockquote><code>{<br><span class="indent-1">"totalResults":"23",</span><br><span class="indent-1">"currentPage":"2",</span><br><span class="indent-1">"images":[</span><br><span class="indent-2">{</span><br><span class="indent-3">"image":"https://www.blah.com/xxx",</span><br><span class="indent-3">"page":"https://www.blah.com/page/xxx",</span><br><span class="indent-3">"alt_text":"Alt Text"</span><br><span class="indent-2">},</span><br><span class="indent-2">{</span><br><span class="indent-3">"image":"https://www.blah.com/xxx",</span><br><span class="indent-3">"page":"https://www.blah.com/page/xxx",</span><br><span class="indent-3">"alt_text":"Alt Text"</span><br><span class="indent-2">},</span><br><span class="indent-2">{</span><br><span class="indent-3">"image":"https://www.blah.com/xxx",</span><br><span class="indent-3">"page":"https://www.blah.com/page/xxx",</span><br><span class="indent-3">"alt_text":"Alt Text"</span><br><span class="indent-2">}</span><br><span class="indent-1">]</span><br>}</code></blockquote>
+                dd 
+                    blockquote
+                        code
+                            pre.
+                                {
+                                   "totalResults":"23",
+                                   "currentPage":"2"
+                                   "images":[
+                                       {
+                                           "image":"https://www.blah.com/xxx",
+                                           "page":"https://www.blah.com/page/xxx",
+                                           "alt_text":"Alt Text"
+                                       },
+                                       {
+                                           "image":"https://www.blah.com/xxx",
+                                           "page":"https://www.blah.com/page/xxx",
+                                           "alt_text":"Alt Text"
+                                       },
+                                       {
+                                           "image":"https://www.blah.com/xxx",
+                                           "page":"https://www.blah.com/page/xxx",
+                                           "alt_text":"Alt Text"
+                                       }
+                                   ]
+                                }
                 dt Recent Searches (User Story 3):
-                dd <blockquote><code>[<br><span class="indent-1">{</span><br><span class="indent-2">"searchTerm":"Funny Cats",</span><br><span class="indent-2">"searchTime":"2016-07-15T19:40:24.961Z"<span class="indent-1"></span><br><span class="indent-1">},</span><br><span class="indent-1">{</span><br><span class="indent-2">"searchTerm":"Grumpy Cats",</span><br><span class="indent-2">"searchTime":"2016-07-15T19:38:16.437Z"</span><br><span class="indent-1">}</span><br>]</code></blockquote>
-                
+                dd 
+                    blockquote
+                        code
+                            pre.
+                                [
+                                    {
+                                        "searchTerm":"Funny Cats",
+                                        "searchTime":"2016-07-15T19:40:24.961Z"
+                                    },
+                                    {
+                                        "searchTerm":"Grumpy Cats",
+                                        "searchTime":"2016-07-15T19:38:16.437Z"
+                                    }
+                                ]

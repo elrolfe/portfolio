@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Eric Rolfe's Portfolio - Pomodoro Clock Project</title>
+        <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet" type="text/css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/pomodoro/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="title text-center" style="font-family: Play">Pomodoro Clock</h1>
+            <h3 class="subtitle text-center">FreeCodeCamp.com</h3>
+            <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                    <div class="set-timer activity">
+                        <h3 class="text-center">Activity Time</h3>
+                        <p class="text-center">
+                            <button class="decrement" id="dec-activity-time">-</button>
+                            <span class="timer-value" id="activity-time">25</span>
+                            <button class="increment" id="inc-activity-time">+</button>
+                        </p>
+                        <p class="small-text text-center">Minutes</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-offset-2">
+                    <div class="set-timer break">
+                        <h3 class="text-center">Break Time</h3>
+                        <p class="text-center">
+                            <button class="decrement" id="dec-break-time">-</button>
+                            <span class="timer-value" id="break-time">5</span>
+                            <button class="increment" id="inc-break-time">+</button>
+                        </p>
+                        <p class="small-text text-center">Minutes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <canvas class="timer" id="timer"></canvas>
+                </div>
+            </div>
+            <audio id="alert">
+                <source src="/pomodoro/mp3/chime.mp3" type="audio/mpeg" />
+            </audio>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script src="/pomodoro/js/pomodoro.js"></script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Eric Rolfe's Portfolio - JavaScript Calculator Project</title>
+        <link href="https://fonts.googleapis.com/css?family=VT323|Lobster" rel="stylesheet" type="text/css">
+        <link href="/calculator/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="calculator">
+            <div class="display">
+                <div class="equation">
+                    <p class="entry">0</p>
+                    <p class="memory"></p>
+                </div>
+            </div>
+            <div class="label">
+                <p>FreeCodeCamp</p>
+            </div>
+            <div class="buttons">
+                <button class="memory-button" id="memory-clear">MC</button>
+                <button class="memory-button" id="memory-recall">MR</button>
+                <button class="memory-button" id="memory-add">M+</button>
+                <button class="memory-button" id="memory-subtract">M-</button>
+                <button class="clear-button" id="clear-entry">C</button>
+            </div>
+            <div class="buttons">
+                <button class="number-button" id="seven">7</button>
+                <button class="number-button" id="eight">8</button>
+                <button class="number-button" id="nine">9</button>
+                <button class="unary-operator-button" id="square">x<sup>2</sup></button>
+                <button class="unary-operator-button" id="root">&radic;x</button>
+            </div>
+            <div class="buttons">
+                <button class="number-button" id="four">4</button>
+                <button class="number-button" id="five">5</button>
+                <button class="number-button" id="six">6</button>
+                <button class="operator-button" id="multiply">&times;</button>
+                <button class="operator-button" id="divide">&divide;</button>
+            </div>
+            <div class="buttons">
+                <button class="number-button" id="one">1</button>
+                <button class="number-button" id="two">2</button>
+                <button class="number-button" id="three">3</button>
+                <button class="operator-button" id="add">+</button>
+                <button class="operator-button" id="subtract">-</button>
+            </div>
+            <div class="buttons">
+                <button class="unary-operator-button" id="percent">%</button>
+                <button class="number-button" id="zero">0</button>
+                <button class="decimal-button" id="decimal">.</button>
+                <button class="unary-operator-button" id="negate">&plusmn;</button>
+                <button class="evaluate-button" id="equal">=</button>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="/calculator/js/calculator.js"></script>
+</html>
