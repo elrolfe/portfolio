@@ -1,11 +1,13 @@
 "use strict";
 
-var mongoose = require("mongoose"),
-    Schema = mongoose.Schema;
+module.exports = function(db) {
+    var mongoose = require("mongoose"),
+        Schema = mongoose.Schema;
     
-var Search = new Schema({
-    term: String,
-    timestamp: Number
-});
-
-module.exports = mongoose.model("Search", Search);
+    var Search = new Schema({
+        term: String,
+        timestamp: Number
+    });
+    
+    return db.model("Search", Search);
+}

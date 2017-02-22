@@ -13,12 +13,15 @@ module.exports = function(app, baseDir) {
         facebookStrategyUsed = false,
         twitterStrategyUsed = false;
         
-    var connection = null,
-        User = null,
-        Poll = null,
-        Answer = null,
-        Response = null;
-        
+    var connection = mongoose.createConnection(process.env.VOTE_DB);
+
+    autoincrement.initialize(connection);
+    
+    var User = require(baseDir + "/app/models/users.js")(autoincrement, connection);
+    var Poll = require(baseDir + "/app/models/polls.js")(autoincrement, connection);
+    var Answer = require(baseDir + "/app/models/answers.js")(autoincrement, connection);
+    var Response = require(baseDir + "/app/models/responses.js")(autoincrement, connection);
+
     app.use(passport.initialize());
     app.use(passport.session());
     
@@ -55,11 +58,9 @@ module.exports = function(app, baseDir) {
     app.route("/auth/facebook/callback")
         .get(passport.authenticate("facebook", { failureRedirect: "/vote/login/error" }), (req, res) => {
             // Successfully authenticated a Facebook user.  See if we can find the user in the database
-            connectToDatabase();
             User.findOne({ facebook: req.user.id }, (err, user) => {
                 if (err) {
                     console.log(err);
-                    disconnectFromDatabase();
                     return;
                 }
                 
@@ -71,8 +72,6 @@ module.exports = function(app, baseDir) {
                         facebook: req.user.id
                     });
                     user.save((err) => {
-                        disconnectFromDatabase();
-
                         if (err) {
                             console.log(err);
                             return;
@@ -82,7 +81,6 @@ module.exports = function(app, baseDir) {
                         res.redirect("/vote/user/" + user._id);
                     });
                 } else {
-                    disconnectFromDatabase();
                     req.session.user = user;
                     res.redirect("/vote/user/" + user._id);
                 }
@@ -110,11 +108,9 @@ module.exports = function(app, baseDir) {
     app.route("auth/twitter/callback")
         .get(passport.authenticate("twitter", { failureRedirect: "/vote/login/error" }), (req, res) => {
             // Successfully authenticated a Twitter user.  See if we can find the user in the database
-            connectToDatabase();
             User.findOne({ twitter: req.user.id }, (err, user) => {
                 if (err) {
                     console.log(err);
-                    disconnectFromDatabase();
                     return;
                 }
                 
@@ -126,8 +122,6 @@ module.exports = function(app, baseDir) {
                         twitter: req.user.id
                     });
                     user.save((err) => {
-                        disconnectFromDatabase();
-                        
                         if (err) {
                             console.log(err);
                             return;
@@ -136,7 +130,6 @@ module.exports = function(app, baseDir) {
                         res.redirect("/vote/user/" + user._id);
                     });
                 } else {
-                    disconnectFromDatabase();
                     req.session.user = user;
                     res.redirect("/vote/user/" + user._id);
                 }
@@ -145,7 +138,6 @@ module.exports = function(app, baseDir) {
         
     app.route("/login")
         .post((req, res, next) => {
-            connectToDatabase();
             if (!localStrategyUsed) {
                 passport.use(new LocalStrategy(User.authenticate()));
                 localStrategyUsed = true;
@@ -156,14 +148,12 @@ module.exports = function(app, baseDir) {
         passport.authenticate("local", { failureRedirect: "/vote/login/error" }), 
         (req, res) => {
             // The local user has been authenticated.  Redirect to the user profile page.
-            disconnectFromDatabase();
             req.session.user = req.user;
             res.redirect("/vote/user/" + req.user._id);
         });
         
     app.route("/login/error")
         .get((req, res) => {
-            disconnectFromDatabase();
             res.render("index", { message: { type: "alert-danger", message: "Your login request could not be authenticated.  Please try again." } });
         });
         
@@ -181,11 +171,10 @@ module.exports = function(app, baseDir) {
         })
         .post((req, res) => {
             // Route to return an object containing a certain number of polls
-            connectToDatabase();
-            
+
             // Set search parameters
-            var numberOfPolls = req.body.maxpolls || 50;  // Number of polls to return, if possible.  Defaults to 50
-            var pollOffset = req.body.offset || 0;  // Starting offset of the polls to return.  Defaults to 0
+            var numberOfPolls = (req.body.maxpolls ? parseInt(req.body.maxpolls) : 50);  // Number of polls to return, if possible.  Defaults to 50
+            var pollOffset = (req.body.offset ? parseInt(req.body.offset) : 0);  // Starting offset of the polls to return.  Defaults to 0
             var author = (req.body.author ? { user: req.body.author } : {});
             var sortArray = (req.body.sortFields || [{ field: "created", direction: "desc" }]);  // Sort criteria.  Defaults to newest polls first
             var sortString = sortArray.map((sa) => {
@@ -195,8 +184,7 @@ module.exports = function(app, baseDir) {
             // Find polls that match the search parameters
             Poll.find(author).sort(sortString).skip(pollOffset).limit(numberOfPolls).exec((err, polls) => {
                 if (err) {
-                    disconnectFromDatabase();
-                    return res.send({ error: "A database error occurred accessing the polls" });
+                    return res.send({ error: "A database error occurred accessing the polls (" + err + ")" });
                 }
     
                 // Get all of the poll ids
@@ -212,7 +200,6 @@ module.exports = function(app, baseDir) {
                 // Find all answer options associated with the found polls
                 Answer.find({ poll: { $in: pollIDs } }, (err, answers) => {
                     if (err) {
-                        disconnectFromDatabase();
                         return res.send({ error: "A database error occurred accessing the poll answers" });
                     }
                     
@@ -225,7 +212,6 @@ module.exports = function(app, baseDir) {
                     // Find all of the poll authors
                     User.find({ _id: { $in: userIDs } }, (err, users) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.send({ error: "A database error occurred accessing the poll users" });
                         }
 
@@ -237,8 +223,6 @@ module.exports = function(app, baseDir) {
                         
                         // Get the number of responses
                         Response.find({ poll: { $in: pollIDs } }, (err, responses) => {
-                            disconnectFromDatabase();
-
                             if (err) {
                                 return res.send({ error: "A database error occurred accessing the poll responses" });
                             }
@@ -286,8 +270,6 @@ module.exports = function(app, baseDir) {
             if (req.body.question.trim() == "")
                 return res.render("index", { message: { type: "alert-warning", message: "A question must be provided to create a new poll." }, user: req.session.user });
                 
-            connectToDatabase();
-            
             // Create the new poll and save it to the database
             var poll = new Poll({
                 user: sessionUser._id,
@@ -295,7 +277,6 @@ module.exports = function(app, baseDir) {
             });
             poll.save((err) => {
                 if (err) {
-                    disconnectFromDatabase();
                     throw err;
                 }
                 
@@ -317,14 +298,12 @@ module.exports = function(app, baseDir) {
                     // Save any answer documents to the database, and redirect to the poll edit page
                     if (documents.length > 0) {
                         Answer.create(documents, (err) => {
-                            disconnectFromDatabase();
-                            
+
                             if (err) throw err;
                             
                             res.redirect("/vote/polls/" + poll._id);
                         });
                     } else {
-                        disconnectFromDatabase();
                         res.redirect("/vote/polls/" + poll._id);
                     }
                 }
@@ -333,10 +312,7 @@ module.exports = function(app, baseDir) {
 
     app.route("/polls/random")
         .get((req, res) => {
-            connectToDatabase();
-            
             Poll.count({}, (err, count) => {
-                disconnectFromDatabase();
                 if (err) return res.render("index", { message: { type: "alert-danger", message: "A database error has occurred trying to get a random poll!" }, user: (req.session.user || null) });
                 
                 if (count === 0)
@@ -358,12 +334,9 @@ module.exports = function(app, baseDir) {
                 searchString += "|(" + t + ")";
             });
             
-            connectToDatabase();
-            
             // Find all polls whose quetion matches the search terms
             Poll.find({ question: new RegExp(searchString, "i") }, (err, polls) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error occurred searching the polls" });
                 }
                 
@@ -379,7 +352,6 @@ module.exports = function(app, baseDir) {
                 // Get the users who authored the polls
                 User.find({ _id: { $in: userIDs } }, (err, users) => {
                     if (err) {
-                        disconnectFromDatabase();
                         return res.send({ error: "A database error occurred finding the users" });
                     }
                     
@@ -395,7 +367,6 @@ module.exports = function(app, baseDir) {
                         { $group: { _id: "$poll", number: { $sum: 1 } } }
                     ], (err, responses) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.send({ error: "A database error occurred counting the responses" });
                         }
                         
@@ -410,7 +381,6 @@ module.exports = function(app, baseDir) {
                             { $match: { poll: { $in : pollIDs } } },
                             { $group: { _id: "$poll", number: { $sum : 1 } } }
                         ], (err, answers) => {
-                            disconnectFromDatabase();
 
                             if (err) return res.send({ error: "A database error occurred counting the answer options" });
                             
@@ -443,8 +413,6 @@ module.exports = function(app, baseDir) {
             res.render("toppolls", { user: req.session.user || null });
         })
         .post((req, res) => {
-            connectToDatabase();
-            
             // Get the poll ids with the most responses
             Response.aggregate([
                 { $group: { _id: "$poll", number: { $sum: 1 } } },
@@ -452,21 +420,18 @@ module.exports = function(app, baseDir) {
                 { $limit: 10 }
             ], (err, responses) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error occurred gathering the results" });
                 }
 
                 // Get the polls associated with the top responses
                 Poll.find({ _id: { $in: responses.map((r) => { return r._id; }) } }, (err, polls) => {
                     if (err) {
-                        disconnectFromDatabase();
                         return res.send({ error: "A database error occurred accessing the polls" });
                     }
                     
                     // Get the users who authored the polls
                     User.find({ _id: { $in: polls.map((p) => { return p.user; }) } }, (err, users) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.send({ error: "A database error occurred accessing the users" });
                         }
                         
@@ -475,8 +440,6 @@ module.exports = function(app, baseDir) {
                             { $match: { poll: { $in: responses.map((r) => {return r._id; }) } } },
                             { $group: { _id: "$poll", number: { $sum: 1 } } },
                         ], (err, answers) => {
-                            disconnectFromDatabase();
-                            
                             if (err) return res.send({ error: "A database error occurred accessing the answers" });
                             
                             // Create convenience variables
@@ -515,16 +478,12 @@ module.exports = function(app, baseDir) {
 
     app.route("/polls/:pollID/answers")
         .post((req, res, next) => {
-            connectToDatabase();
-            
             Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error ocurred" });
                 }
                 
                 if (poll === null) {
-                    disconnectFromDatabase();
                     return res.send({ error: "The specified poll does not exist!" });
                 }
                 
@@ -543,25 +502,20 @@ module.exports = function(app, baseDir) {
             if (req.body.newAnswers.trim() == "")
                 return res.send({ error: "No new answers given" });
                 
-            connectToDatabase();
-            
             // Find the poll to add answers to
             Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error occurred" });
                 }
                 
                 // Does the poll exist?
                 if (poll === null) {
-                    disconnectFromDatabase();
                     return res.send({ error: "The specified poll does not exist!" });
                 }
                 
                 // For proper ordering, find how many answers already exist for the poll
                 Answer.count({ poll: req.params.pollID }, (err, answerCount) => {
                     if (err) {
-                        disconnectFromDatabase();
                         return res.send({ error: "A database error occurred" });
                     }
                     
@@ -585,7 +539,6 @@ module.exports = function(app, baseDir) {
                     // Add the answers to the database
                     Answer.create(documents, (err) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.send({ error: "A database error occurred" });
                         }
     
@@ -607,44 +560,36 @@ module.exports = function(app, baseDir) {
             if (req.body.id == "")
                 return res.send({ error: "No answer given to remove" });
     
-            connectToDatabase();
-            
             // Find the given poll            
             Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error occurred" });
                 }
                 
                 // Does the poll exist?
                 if (poll === null) {
-                    disconnectFromDatabase();
                     return res.send({ error: "The poll you are trying to remove an answer from does not exist!" });
                 }
                     
                 // Find the answer to be removed
                 Answer.findOne({ _id: req.body.id }, (err, answer) => {
                     if (err) {
-                        disconnectFromDatabase();
                         return res.send({ error: "A database error occurred" });
                     }
                     
                     // Does the answer exist?
                     if (answer === null) {
-                        disconnectFromDatabase();
                         return res.send({ error: "The answer you are trying to remove does not exist!" });
                     }
                         
                     // Is the answer part of the given poll?
                     if (answer.poll !== poll._id) {
-                        disconnectFromDatabase();
                         return res.send({ error: "The answer you are trying to remove does not belong to the given poll!" });
                     }
                     
                     // Remove any responses that chose this answer
                     Response.remove({ answer: req.body.id }, (err) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.send({ error: "A database error occurred" });
                         }
                         
@@ -653,14 +598,12 @@ module.exports = function(app, baseDir) {
                         .setOptions({ multi: true })
                         .update({ $inc: { order: -1 }}, (err) => {
                             if (err) {
-                                disconnectFromDatabase();
                                 return res.send({ error: "A database error occurred" });
                             }
                             
                             // Remove the answer
                             Answer.remove({ _id: req.body.id}, (err) => {
                                 if (err) {
-                                    disconnectFromDatabase();
                                     return res.send({ error: "A database error occurred" });
                                 }
             
@@ -683,12 +626,8 @@ module.exports = function(app, baseDir) {
                 return res.redirect("/vote/polls/" + req.params.pollID);
                 
             // Find the specified poll
-            
-            connectToDatabase();
-            
-            Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
-                disconnectFromDatabase();
-                
+                Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
+
                 if (err) throw err;
                 
                 // If the poll doesn't exist, redirect to the home page
@@ -716,36 +655,29 @@ module.exports = function(app, baseDir) {
             
             if (!sessionUser) return res.render("index", { message: { type: "alert-warning", message: "You must be logged in to remove a poll" } });
 
-            connectToDatabase();
-            
             Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.render("index", { user: sessionUser, message: { type: "alert-danger", message: "A database error occurred trying to access the polls!" } });
                 }
                 
                 if (poll === null) {
-                    disconnectFromDatabase();
                     return res.render("index", { user: sessionUser, message: { type: "alert-danger", message: "The specified poll does not exist!" } });
                 }
                     
                 // Remove all responses to the poll
                 Response.remove({ poll: poll._id }, (err) => {
                     if (err) {
-                        disconnectFromDatabase();
                         return res.render("userprofile", { user: sessionUser, message: { type: "alert-danger", message: "A database error occurred trying to remove the responses!" } });
                     }
                     
                     // Remove all answer options for the poll
                     Answer.remove({ poll: poll._id }, (err) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.render("userprofile", { user: sessionUser, message: { type: "alert-danger", message: "A database error occurred trying to remove the answers!" } });
                         }
                         
                         // Finally, remove the poll
                         Poll.remove({ _id: poll._id }, (err) => {
-                            disconnectFromDatabase();
                             if (err) return res.render("userprofile", { user: sessionUser, message: { type: "alert-danger", message: "A database error occurred trying to remove the poll!" } });
 
                             res.render("userprofile", { user: sessionUser, message: { type: "alert-success", message: "The poll \"" + poll.question + "\" was successfully removed" } });
@@ -760,28 +692,22 @@ module.exports = function(app, baseDir) {
             if (req.params.pollID != parseInt(req.params.pollID))
                 return next();
 
-            connectToDatabase();
-            
             Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error occurred trying to access the poll" });
                 }
                 
                 if (poll === null) {
-                    disconnectFromDatabase();
                     return res.send({ error: "The poll wasn't found in the database!" });
                 }
                 
                 Answer.find({ poll: req.params.pollID }).sort({ order: "asc" }).exec((err, answers) => {
                     if (err) {
-                        disconnectFromDatabase();
                         return res.send({ error: "A database error occurred trying to access the answer options" });
                     }
 
                     Response.find({ poll: req.params.pollID }, (err, results) => {
-                        disconnectFromDatabase();
-                        
+
                         if (err) return res.send({ error: "A database error occurred trying to access the poll results" });
                         
                         if (results === null) return res.send({ error: "No responses have been submitted yet."});
@@ -834,17 +760,13 @@ module.exports = function(app, baseDir) {
                 (req.body.vote < 0 && !(req.session.user && req.body.customAnswer !== "")))
                 return res.send({ error: "Invalid vote data provided" });
                 
-            connectToDatabase();
-            
             // Make sure the poll exists
             Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error has occurred" });
                 }
                 
                 if (poll === null) {
-                    disconnectFromDatabase();
                     return res.send({ error: "The poll does not exist!" });
                 }
                 
@@ -854,7 +776,6 @@ module.exports = function(app, baseDir) {
                     // Get the current number of answers for this poll
                     Answer.count({ poll: poll._id }, (err, answerCount) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.send({ error: "A database error has occurred" });
                         }
                         
@@ -868,7 +789,6 @@ module.exports = function(app, baseDir) {
                         
                         answer.save((err) => {
                             if (err) {
-                                disconnectFromDatabase();
                                 return res.send({ error: "A database error has occurred" });
                             }
                             
@@ -878,12 +798,10 @@ module.exports = function(app, baseDir) {
                 } else {
                     Answer.findOne({ _id: req.body.vote }, (err, answer) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return res.send({ error: "A database error has occurred" });
                         }
                         
                         if (answer === null) {
-                            disconnectFromDatabase();
                             return res.send({ error: "The answer could not be found in the database! (" + req.body.vote + ")" });
                         }
                         
@@ -898,21 +816,16 @@ module.exports = function(app, baseDir) {
             if (req.params.pollID != parseInt(req.params.pollID))
                 return next();
                 
-            connectToDatabase();
-            
             Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
                 if (err) {
-                    disconnectFromDatabase();
                     throw err;
                 }
                 
                 if (poll === null) {
-                    disconnectFromDatabase();
                     return res.redirect("/vote");
                 }
                     
                 User.findOne({ _id: poll.user }, (err, author) => {
-                    disconnectFromDatabase();
                     if (err) throw err;
                     
                     poll.author = author.displayName;
@@ -927,8 +840,6 @@ module.exports = function(app, baseDir) {
             res.render("register");
         })
         .post((req, res) => {
-            connectToDatabase();
-
             if (!localStrategyUsed) {
                 passport.use(new LocalStrategy(User.authenticate()));
                 localStrategyUsed = true;
@@ -936,12 +847,10 @@ module.exports = function(app, baseDir) {
 
             User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.render("register", { user: user });
                 }
                 
                 passport.authenticate("local")(req, res, () => {
-                    disconnectFromDatabase();
                     req.user.displayName = req.body.displayName;
                     req.user.save();
                     req.session.user = req.user;
@@ -965,11 +874,8 @@ module.exports = function(app, baseDir) {
             if (!req.body.name || req.body.name == "")
                 return res.send({ available: false });
                 
-            connectToDatabase();
-            
             User.find({ username: new RegExp("^" + req.body.name.trim() + "$") }, (err, users) => {
-                disconnectFromDatabase();
-                
+
                 if (err) return res.send({ error: "A database error occurred querying the users!" });
                 
                 res.send({ available: (users.length === 0) });
@@ -991,12 +897,8 @@ module.exports = function(app, baseDir) {
             if (!req.body.displayName || req.body.displayName.trim() == "")
                 return res.send({error: "The display name cannot be blank"});
                 
-            connectToDatabase();
-            
             // Update the display name
             User.findOneAndUpdate({ _id: req.params.userID }, { displayName: req.body.displayName }, (err) => {
-                disconnectFromDatabase();
-                
                 if (err) return res.send({error: "Error finding the user information"});
                 
                 sessionUser.displayName = req.body.displayName;
@@ -1032,8 +934,6 @@ module.exports = function(app, baseDir) {
             ip: (req.session.user ? null : req.ip)
         });
         response.save((err) => {
-            disconnectFromDatabase();
-            
             if (err) return res.send({ error: "A database error occurred!" });
             
             res.send({ success: true });
@@ -1044,20 +944,17 @@ module.exports = function(app, baseDir) {
         
         Poll.findOne({ _id: req.params.pollID }, (err, poll) => {
             if (err) {
-                disconnectFromDatabase();
                 return res.send({ error: "A database error occurred" });
             }
 
             // Find all of the answer options for this poll
             Answer.find({ poll: poll._id }).sort({ order: "asc" }).exec((err, docs) => {
                 if (err) {
-                    disconnectFromDatabase();
                     return res.send({ error: "A database error occurred" });
                 }
 
                 // Return if there are no answers
                 if (docs.length === 0) {
-                    disconnectFromDatabase();
                     return res.send({ error: "No answers have been defined yet" });
                 }
                 
@@ -1070,7 +967,6 @@ module.exports = function(app, baseDir) {
                     
                 // Get the display names for all of the users who have added answers
                 User.find({ _id: { $in: userIDs }}, (err, users) => {
-                    disconnectFromDatabase();
                     if (err) return res.send({ error: "A database error occurred" });
 
                     // Return the users, answers, and poll author to be proceessed
@@ -1081,28 +977,5 @@ module.exports = function(app, baseDir) {
                 });
             });
         });
-    }
-
-    function connectToDatabase() {
-        if (connection)
-            disconnectFromDatabase();
-            
-        connection = mongoose.connect(process.env.VOTE_DB);
-        autoincrement.initialize(connection);
-        
-        if (!User) {
-            User = require(baseDir + "/app/models/users.js")(autoincrement);
-            Poll = require(baseDir + "/app/models/polls.js")(autoincrement);
-            Answer = require(baseDir + "/app/models/answers.js")(autoincrement);
-            Response = require(baseDir + "/app/models/responses.js")(autoincrement);
-        }
-    }
-    
-    function disconnectFromDatabase() {
-        if (!connection)
-            return;
-            
-        connection.disconnect();
-        connection = null;
     }
 };

@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(autoincrement) {
+module.exports = function(autoincrement, db) {
     var mongoose = require("mongoose"),
         Schema = mongoose.Schema;
         
@@ -14,5 +14,5 @@ module.exports = function(autoincrement) {
     
     Answer.plugin(autoincrement.plugin, { model: "Answer", startAt: 1 });
     
-    return mongoose.model("Answer", Answer);
+    return db.model("Answer", Answer);
 }

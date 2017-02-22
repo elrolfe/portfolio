@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(autoincrement) {
+module.exports = function(autoincrement, db) {
     var mongoose = require("mongoose"),
         Schema = mongoose.Schema,
         passportLocalMongoose = require("passport-local-mongoose");
@@ -16,5 +16,5 @@ module.exports = function(autoincrement) {
     User.plugin(passportLocalMongoose);
     User.plugin(autoincrement.plugin, { model: "User", startAt: 1 });
     
-    return mongoose.model("User", User);
+    return db.model("User", User);
 }

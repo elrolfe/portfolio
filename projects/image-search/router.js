@@ -9,8 +9,8 @@ module.exports = function(app, baseDir) {
             progress: false
         };
         
-    var connection = null,
-        Search = null;
+    var connection = mongoose.createConnection(process.env.IMAGE_SEARCH_DB);
+    var Search = require(baseDir + "/app/models/search.js")(connection);
         
     app.route("/")
         .get((req, res) => {
@@ -32,11 +32,7 @@ module.exports = function(app, baseDir) {
         
     app.route("/api/recent")
         .get((req, res) => {
-            connectToDatabase();
-            
             Search.find({}).sort("-timestamp").exec((err, searches) => {
-                disconnectFromDatabase();
-                
                 if (err) 
                     return res.send({ error: "A database error occurred retrieving the recent searches" });
 
@@ -89,8 +85,6 @@ module.exports = function(app, baseDir) {
                     
                     res.send(results);
                     
-                    connectToDatabase();
-                    
                     var newDoc = {
                         term: searchTerm,
                         timestamp: now.getTime()
@@ -98,14 +92,12 @@ module.exports = function(app, baseDir) {
                     
                     Search.create(newDoc, (err) => {
                         if (err) {
-                            disconnectFromDatabase();
                             return console.log("An error occurred saving the search term:\n" + err);
                         }
                         
                         // Delete all except for the 10 most recent searches
                         Search.find().sort("-timestamp").limit(10).exec((err, searches) => {
                             if (err) {
-                                disconnectFromDatabase();
                                 return console.log("An error occurred getting the most recent searches");
                             }
                             
@@ -114,8 +106,6 @@ module.exports = function(app, baseDir) {
                             });
                             
                             Search.remove({ _id: { $nin: ids } }, (err) => {
-                                disconnectFromDatabase()
-        
                                 if (err)
                                     console.log("An error occurred removing outdated search terms");
                             });
@@ -124,21 +114,4 @@ module.exports = function(app, baseDir) {
                 });
             });
         });
-        
-    function connectToDatabase() {
-        if (connection)
-            disconnectFromDatabase();
-            
-        connection = mongoose.connect(process.env.IMAGE_SEARCH_DB);
-        Search = require(baseDir + "/app/models/search.js");
-    }
-    
-    function disconnectFromDatabase() {
-        if (!connection)
-            return;
-            
-        connection.disconnect();
-        connection = null;
-        Search = null;
-    }
 };

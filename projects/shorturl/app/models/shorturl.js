@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(autoincrement) {
+module.exports = function(autoincrement, db) {
     var mongoose = require("mongoose"),
         Schema = mongoose.Schema;
         
@@ -9,7 +9,7 @@ module.exports = function(autoincrement) {
         short_url: String
     });
     
-    ShortUrl.plugin(autoincrement.plugin, { model: "ShortUrl" });
+    ShortUrl.plugin(autoincrement.plugin, "ShortUrl");
     
-    return mongoose.model("ShortUrl", ShortUrl);
+    return db.model("ShortUrl", ShortUrl);
 }
