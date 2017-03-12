@@ -3,6 +3,8 @@ html(lang="en")
     head
         title Eric Rolfe's Portfolio - Timestamp Microservice
         link(href="/timestamp/css/style.css", rel="stylesheet")
+        script
+            include ../../../../resources/js/gaScript.js    
     body
         .wrapper
             h1
@@ -19,5 +21,3 @@ html(lang="en")
             code #{protocol}://#{host}#{base}/1450137600
             h2 Example output:
             code { "unix": 1450137600, "natural": "December 15, 2015" }
-    script
-        include ../../../../resources/js/gaScript.js

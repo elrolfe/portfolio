@@ -3,6 +3,8 @@ html(lang="en")
     head
         title Eric Rolfe's Portfolio - D3 Scatter Plot Project
         link(href="/scatter-plot/css/style.css", rel="stylesheet")
+        script
+            include ../../../../resources/js/gaScript.js    
     body
         .chart-wrapper
             .tooltip
@@ -14,5 +16,3 @@ html(lang="en")
             svg.chart
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js")
     script(src="/scatter-plot/js/scatter-plot.js")
-    script
-        include ../../../../resources/js/gaScript.js

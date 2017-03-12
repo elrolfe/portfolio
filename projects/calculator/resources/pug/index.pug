@@ -4,6 +4,8 @@ html(lang="en")
         title Eric Rolfe's Portfolio - JavaScript Calculator Project
         link(href="https://fonts.googleapis.com/css?family=VT323|Lobster", rel="stylesheet", type="text/css")
         link(href="/calculator/css/style.css", rel="stylesheet")
+        script
+            include ../../../../resources/js/gaScript.js    
     body
         .calculator
             .display
@@ -44,5 +46,3 @@ html(lang="en")
                 button#equal.evaluate-button =
     script(src="https://code.jquery.com/jquery-2.2.4.min.js")
     script(src="/calculator/js/calculator.js")
-    script
-        include ../../../../resources/js/gaScript.js

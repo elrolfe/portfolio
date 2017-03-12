@@ -3,6 +3,8 @@ html(lang="en")
     head
         title Eric Rolfe's Portfolio - File Metadata Microservice API Project
         link(href="/filemeta/css/style.css", rel="stylesheet")
+        script
+            include ../../../../resources/js/gaScript.js    
     body
         .wrapper
             h1
@@ -18,5 +20,3 @@ html(lang="en")
             form(action="/filemeta", enctype="multipart/form-data", method="POST")
                 input(type="file", name="newFile")
                 input(type="submit", value="Submit")
-    script
-        include ../../../../resources/js/gaScript.js

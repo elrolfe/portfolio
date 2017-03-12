@@ -3,6 +3,8 @@ html(lang="en")
     head
         title Eric Rolfe's Portfolio - D3 Bar Chart
         link(href="/bar-chart/css/style.css", rel="stylesheet")
+        script
+            include ../../../../resources/js/gaScript.js    
     body
         .chart-wrapper
             .tooltip
@@ -11,5 +13,3 @@ html(lang="en")
             .description
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js")
     script(src="/bar-chart/js/bar-chart.js")
-    script
-        include ../../../../resources/js/gaScript.js
